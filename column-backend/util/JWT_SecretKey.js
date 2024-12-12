@@ -1,0 +1,1 @@
+module.exports = 'JSON_WEB_TOKEN_010-8489-3121_hwt';

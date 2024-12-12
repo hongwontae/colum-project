@@ -1,0 +1,13 @@
+.list a {
+    color: #de0036;
+    text-decoration: none;
+    transition: color 0.5ms ease;
+}
+
+.list a.active{
+    color : grey;
+}
+
+.list a:hover {
+    color : white
+}

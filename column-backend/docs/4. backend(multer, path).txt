@@ -1,0 +1,49 @@
+1. multer
+1-1. Node.js에서 파일 업로드를 처리하는 미들웨어입니다.
+1-2. 멀티파트 폼 데이터(multipart/form-data)를 해석하고 파일을 서버에 저장하는 기능을 제공합니다.
+
+1-3. 디렉토리 설정
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination : (req, file, cb)=>{
+        cb(null, path..)
+    }, => 파일이 저장될 경로를 설정합니다.
+    filename : (req, file, cb)=>{
+        cb(null, path...)
+    } =>저장할 떄의 이름을 설정합니다. 파일 이름이 충돌하면 덮어써집니다.
+}) 
+dsetination, filename 함수의 인자
+=> req : 요청 객체
+=> file : 업로드 중인 파일에 대한 정보가 담긴 객체입니다.
+=> file.originalname : 파일의 원래 이름
+=> file.mimetype : 파일의 MIME 타입
+=> file.fieldname : 폼 필드 이름
+=> file.size : 파일의 크기
+=> file.buffer : 메모리에 저장된 파일 데이터
+=> des의 cb : 파일을 저장할 경로를 설정하는 콜백함수입니다. 첫 번쨰 인자에 null을 주고 두 번쨰 인자에 path
+=> filename의 cb : 파일이름을 설정하는 콜백함수입니다. 첫 번쨰 인자 null, 두 번쨰 인자 지정한 파일명
+
+1-4. multer 미들웨어 흐름
+=> multipart/form-data를 받아서 파일을 처리합니다.
+=> 파일 정보는 req.file에 담기고 텍스트 필드는 req.body에 담깁니다.
+(만약 multer 미들웨어가 여러 파일을 처리할 수 있다면 req.files이고 배열을 반환합니다.)
+=> 다음 미들웨어에서 이를 사용할 수 있습니다.
+
+middleWare
+=> 'url',upload.single('image'), nextMiddleware
+=> single은 하나의 파일만, array는 여러 개의 파일을 처리할 수 있습니다.
+=> 인자는 formdata를 설정할 떄 image key가 필요합니다. (formdata를 append로 처리하지 않았다면 input의 name입니다.)
+
+req.file
+fieldname: 폼 필드 이름 (예: 'image')
+originalname: 파일의 원래 이름
+encoding: 파일 인코딩 방식
+mimetype: 파일의 MIME 타입 (예: 'image/png')
+size: 파일 크기 (바이트)
+path: 파일이 저장된 경로
+
+
+2. 사진 저장소를 임시로 내 벡엔드 내부에 저장했습니다.
+2-1. 사진을 요청할 uri는 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+2-2. 사진 요청 http가 발생하면 app.use를 통해 받고 express.static() 정적 파일에 접근이 가능케 하는 함수입니다.
+2-3. express.static(path)를 통해 정적 파일 위치를 알립니다.
