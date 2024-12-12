@@ -76,12 +76,10 @@ function RatingFormPage() {
           rating: "",
         };
       });
-      console.log(ratingZeroArr);
       return ratingZeroArr;
     });
     setErrorData([]);
   }
-  console.log(errorData);
 
   return (
     <>

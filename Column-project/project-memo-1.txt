@@ -1,6 +1,0 @@
-1. client-server Object Name 일치시키기
-=> express-validator와 req.body가 불일치해서 vaildator 무료 통과나 제대로된 post 처리가 안된다.
-=> 해결 완료
-
-
-2. 각 페이지의 레이아웃 맞추기

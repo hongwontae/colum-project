@@ -11,6 +11,8 @@ function HomePage() {
 
   const loaderData = useLoaderData();
 
+  console.log('hello-world')
+
 
   useEffect(() => {
     if (loaderData?.jStatus === false) {
