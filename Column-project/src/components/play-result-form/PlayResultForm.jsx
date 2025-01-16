@@ -29,6 +29,7 @@ function PlayResultFormPage() {
   function submitHandler(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
+    console.log(descriptionRef.current.value)
     formData.append("image", pickImage);
     formData.append('matchTeam', selectedData)
     submit(formData, {

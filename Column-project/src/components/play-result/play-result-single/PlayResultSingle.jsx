@@ -2,10 +2,9 @@
 /* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import { dateTransformat } from "../../../util/date-formatted";
-import { memo } from "react";
 function PlayResultSingle(props) {
 
-  console.log('play-result-single')
+  
 
   const newFormattedDate = dateTransformat(props.date);
   return (
@@ -25,7 +24,7 @@ function PlayResultSingle(props) {
             <div className="flex flex-col w-full justify-center items-center h-full gap-4 overflow-hidden">
               <h2 className="text-red-500 font-bold text-[1.2rem]">{props.title}</h2>
               <div className="text-zinc-300">{newFormattedDate}</div>
-              <p className="break-words h-1/3">{props.playDescription}</p>
+              <p className="whitespace-pre-line h-1/3">{props.playDescription}</p>
             </div>
           </li>
         </Link>

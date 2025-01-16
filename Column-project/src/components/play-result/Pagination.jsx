@@ -5,8 +5,8 @@ import { memo, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Pagination = memo(function Pagination({ totalPage, url, currentPage }) {
-  console.log('pagination')
   const [startPage, setStartPage] = useState(1); 
+  console.log(currentPage)
 
   const endPage = Math.min(startPage + 9, totalPage); 
 
@@ -35,7 +35,7 @@ const Pagination = memo(function Pagination({ totalPage, url, currentPage }) {
         <Link
           key={ele}
           to={`${url}${ele}`}
-          className={`border-[1px] p-2 rounded-lg text-lg ${currentPage === ele ? "bg-gray-600" : ""}`}
+          className={`border-[1px] p-2 rounded-lg text-lg ${currentPage == ele ? "bg-gray-500" : ""}`}
         >
           {ele}
         </Link>

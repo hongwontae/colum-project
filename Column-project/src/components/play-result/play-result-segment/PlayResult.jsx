@@ -87,7 +87,7 @@ function PlayResult() {
             </div>
           </div>
           <div className="flex justify-center w-11/12">
-            <p className="text-base break-words">
+            <p className="text-base break-words whitespace-pre-line">
               {loaderData.getOneResData.data.playDescription}
             </p>
           </div>
