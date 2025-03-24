@@ -5,7 +5,7 @@ function Layout() {
   
   return (
     <>
-      <div className="bg-slate-800 min-h-screen font-roboto text-center flex flex-col text-zinc-100">
+      <div className="bg-slate-800 min-h-screen text-center flex flex-col text-zinc-100">
         <MainNavigation></MainNavigation>
         <main className="flex-grow">
           <div>

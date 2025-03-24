@@ -24,7 +24,6 @@ function PlayResultPage() {
     }
   }, [ad.jStatus, setIsAuth])
 
-  console.log('playe-result-page')
 
   return (
     <>

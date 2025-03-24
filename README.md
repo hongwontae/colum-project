@@ -13,7 +13,7 @@
 4. 프로젝트 독립적으로 구성
 
 
-## Liverpool Column Explaination
+## Liverpool Column Explanation
 1. **Front File Structure**
 - src/components : src/page 모듈 컴포넌트
 - src/context : 전체 페이지 로그인 상태 Context-API 파일
@@ -224,13 +224,6 @@ app.use((req, res, next) => {
   - 2. cookie-parser
   - 3. 관리자 생성 보안
   ...
-
-  
-
-
-  
-
-
 
 
 
