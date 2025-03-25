@@ -1,0 +1,8 @@
+### test create user
+POST http://localhost:3000/user/create
+Content-Type: application/json
+
+{
+    "email" : "dnjsxoghd@naver.com",
+    "password" : "q2tlxm@123"
+}
