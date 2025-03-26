@@ -1,14 +1,11 @@
 import { IsBoolean, IsOptional, IsString } from "class-validator";
 
-export class createUserDto {
-    
+export class LoginUserDto {
+
     @IsBoolean()
     @IsOptional()
     admin : boolean = false;
 
     @IsString()
-    email : string;
-
-    @IsString()
-    password : string
+    _id : string
 }
