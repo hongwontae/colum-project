@@ -1,0 +1,21 @@
+1. 초기 설정
+=> pipe 설정, DB 설정(mysql), 환경 변수 설정
+=> npm install class-validator class-transformer (body 데이터를 검증하거나 변환하는 라이브러리)
+=> npm install @nestjs/typeorm typeorm mysql2 (typeorm 설정과 연계되는 DBMS 라이브러리)
+=> npm install @nestjs/config cross-env (환경 변수 설정에 관련된 라이브러리)
+
+
+2. config 설정
+=> AppModule에서 ConfigModule.forRoot({isGlobal : true, envFilePath : `.env.${process.env.NODE_ENV}`})
+=> DI 컨테이너에 등록된 config service를 이제 사용할 Service에서 의존성 주입을 받아서 사용합니다.
+=> this.configService.get<type>('key')
+
+
+3. typeorm 설정
+=> AppModule의 imports에서 TypeOrmModule.forRoot({...}), TypeOrm 설정이 완료됩니다.
+(entities에서 entity 객체는 table과 매핑됩니다.)
+=> Entity를 설정한 모듈 import에서 에서 TypeOrmFeature([])
+(모듈내에서 특정 엔티티에 대해 레파지토리를 주입받을 수 있도록 설정하는 방법입니다.)
+=> forFeature()를 양쪽에 설정해야 통과하는 이유? AppModule에서 UserEntity를 사용할 떄
+
+
