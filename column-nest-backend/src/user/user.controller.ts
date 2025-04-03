@@ -1,9 +1,16 @@
-import { Body, Controller, Get, Post, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user-dto';
 import { UserService } from './user.service';
 import { LoginUserDto } from './dto/login-user-dto';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { AuthGuard } from '@nestjs/passport';
+import { UserEntity } from './user.entity';
+
+declare module 'express' {
+    export interface Request {
+        user? : UserEntity
+    }
+}
 
 @Controller('user')
 export class UserController {
@@ -20,18 +27,21 @@ export class UserController {
     @UsePipes(new ValidationPipe({transform : true}))
     async loginUser(@Body() body : LoginUserDto, @Res() res : Response){
         console.log(body)
-        const userToken = await this.userService.loginUser(body.email, body.password, body.userId)
+        const userToken = await this.userService.loginUser(body.email, body.password)
+        // 보낼 떄 jwt=jwtRealValue처럼 보냅니다.
         return res.cookie('jwt', userToken, {
-            httpOnly : true,
+            httpOnly : false,
             sameSite : 'lax',
-            maxAge : 60*60*1000
+            maxAge : 60*60*1000,
+            domain : 'localhost'
         }).json({message : 'login-Success'})
     }
 
     @Get('resource')
     @UseGuards(AuthGuard('jwt'))
-    async testProtect(){
+    async testProtect(@Req() request : Request){
         console.log('hello-world')
+        console.log(request.user)
         return {resource : "Success Resource Access"}
     }
 }

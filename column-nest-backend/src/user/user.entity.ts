@@ -13,5 +13,5 @@ export class UserEntity {
     password : string;
 
     @Column()
-    admin : boolean;
+    admin : string;
 }

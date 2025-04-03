@@ -17,7 +17,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           expiresIn : configService.get<string>('EXPIREH')
         }
       })
-    })
+    }),
   ],
   providers: [AuthService, JwtStrategy],
   exports: [AuthService, JwtModule],

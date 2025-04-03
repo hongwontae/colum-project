@@ -12,7 +12,6 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "userId" : 2,
     "email" : "dnjsxoghd@naver.com",
     "password" : "t5653121"
 }
@@ -20,4 +19,4 @@ Content-Type: application/json
 
 ### Test JWT Validation
 GET http://localhost:3000/user/resource
-Cookie : jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInN1YiI6ImRuanN4b2doZEBuYXZlci5jb20iLCJpYXQiOjE3NDM1OTQxNjksImV4cCI6MTc0MzU5Nzc2OX0.522wqMqq3wV1immR4bwhxneTZS1xp6wk5nczj83tQnc
+Cookie : jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRuanN4b2doZEBuYXZlci5jb20iLCJhZG1pbiI6InVzZXIiLCJpYXQiOjE3NDM2NjM3MzIsImV4cCI6MTc0MzY2NzMzMn0.TFVCPr_hF9fdvBRURQK-14WHBG0RK7tzhuG77ROI3Gs

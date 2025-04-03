@@ -1,0 +1,40 @@
+1. Cloudinary 설정
+=> CloudinaryModule 설정을 providers에 등록하여 DI 컨테이너에 등록합니다.
+=> providers : [{
+    provide : 'CLOUDINARY',
+    inject : [ConfigService],
+    useFactory : (configService : ConfigService)=>{
+        return v2.config({
+            ...
+        })
+    }
+}],
+
+=> exports : ['CLOUDINARY']를 통해 직접 만들 설정 Service를 내보내어 다른 Service에서 사용가능하게 합니다.
+
+
+2. CloudinaryService에서 upload method와 delete method를 생성합니다.
+
+2-1. upload 메서드의 반환값은 Promise<UploadApiResponse>입니다.
+
+2-2. upload 메서드의 인자의 타입은 Express.Multer.File입니다.
+=> Multer 미들웨어를 통해 업로드된 파일 객체를 나타내는 타입입니다.
+=> 해당 타입은 fieldname, originalname, encoding, mimetype, buffer.. 등이 객체 형태로 존재합니다.
+
+2-3. Cloudinary에 업로드하려면 파일경로나 스트림 형식으로 변환해야 합니다.
+=> Multer의 file 객체, file.buffer는 단순한 Buffer라서 바로 업로드 할 수 없습니다.
+=> const readableStream = new Readable(); / 읽기 가능한 스트림을 생성합니다.
+=> readableStream.push(file.buffer); / multer의 file.buffer을 흐르게 만듭니다.
+=> readableStream.push(null); / push(null)을 통해 보낼 데이터가 없음을 명시합니다.
+=> readableStream.pipe(upload); 
+
+=> .pipe()
+=> 스트림을 연결합니다.
+=> 읽기 가능한 스트림 -> 쓰기 가능한 스트림으로 데이터를 전달합니다.
+=> 메모리 사용을 최적화, 대용량 파일 처리에 유리합니다.
+
+2-4. const upload = cloudinary.uploader.upload_stream({folder : '..'}, ()=>{})
+=> Cloudinary에 사진을 upload하는 쓰기 스트림을 생성합니다.
+=> 스트림이 pipe()로 흘러들어왔을 떄 해야되는 처리를 정의합니다.
+
+

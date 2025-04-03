@@ -3,11 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { UserService } from './user/user.service';
 import { UserModule } from './user/user.module';
 import { UserEntity } from './user/user.entity';
-import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { PlayResultModule } from './play-result/play-result.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -27,6 +27,8 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forFeature([UserEntity]),
     UserModule,
     AuthModule,
+    PlayResultModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

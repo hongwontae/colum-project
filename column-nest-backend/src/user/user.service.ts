@@ -22,7 +22,7 @@ export class UserService {
     private authService: AuthService,
   ) {}
 
-  async createUser(admin: boolean, email: string, password: string) {
+  async createUser(admin: string, email: string, password: string) {
     const emailMatch = await this.repo.findOne({ where: { email } });
     if (emailMatch) {
       throw new NotFoundException('기존에 존재하는 이메일입니다.');
@@ -45,7 +45,7 @@ export class UserService {
     return await this.repo.save(user);
   }
 
-  async loginUser(email: string, password: string, userId: number) {
+  async loginUser(email: string, password: string) {
     const emailMatch = await this.repo.findOne({ where: { email } });
 
     if (!emailMatch) {
@@ -63,9 +63,12 @@ export class UserService {
     )) as Buffer;
 
     if (existHashedPassword === newHashedPassword.toString('hex')) {
-      return this.authService.loginUser(userId, email);
+      return this.authService.loginUser(email, emailMatch.admin);
     } else {
       throw new NotFoundException('password가 일치하지 않습니다.')
     }
   }
+
+  async logoutUser(){}
+
 }
