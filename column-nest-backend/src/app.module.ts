@@ -8,6 +8,7 @@ import { UserEntity } from './user/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { PlayResultModule } from './play-result/play-result.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { PlayResultEntity } from './play-result/play-result.entity';
 
 @Module({
   imports: [
@@ -21,10 +22,10 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
       password: 'YourRootPassword',
       username: 'root',
       database: 'col-liver',
-      entities : [UserEntity],
+      entities : [UserEntity, PlayResultEntity],
       synchronize : true,
     }),
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, PlayResultEntity]),
     UserModule,
     AuthModule,
     PlayResultModule,

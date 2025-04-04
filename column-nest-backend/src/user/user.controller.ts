@@ -26,7 +26,6 @@ export class UserController {
     @Post('login')
     @UsePipes(new ValidationPipe({transform : true}))
     async loginUser(@Body() body : LoginUserDto, @Res() res : Response){
-        console.log(body)
         const userToken = await this.userService.loginUser(body.email, body.password)
         // 보낼 떄 jwt=jwtRealValue처럼 보냅니다.
         return res.cookie('jwt', userToken, {

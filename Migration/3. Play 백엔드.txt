@@ -1,2 +1,42 @@
 1. PlayModule은 UserModule과 1대다 관계를 갖습니다.
-=> 
+=> PlayModule에 userId를 FK를 주어서 관계를 맺습니다.
+
+
+2. UserEntity
+=> User는 여러개의 Post를 가집니다. 1:N 관계를 갖습니다.
+=> @OneToMany() 데코레이터를 통해 명시적으로 설정합니다.
+=> @OneToMany(()=>PlayResult, (playResult)=>playResult.user)
+    playResults : PlayResult[];
+
+
+3. PlayResultEntity
+=> PR은 하나의 User를 가집니다. N:1의 관계를 갖습니다.
+=> @ManyToOne() 데코레이터를 통해 명시적으로 조인 칼럼을 설정합니다.
+=>  @ManyToOne(() => User, (user) => user.playResults, {
+    onDelete: 'CASCADE', // 유저가 삭제되면 연결된 결과도 삭제됨
+  })
+  @JoinColumn({ name: 'userId' }) // FK 이름을 명시적으로 지정
+  user: User;
+
+
+4. PlayResult을 저장할 떄 userId를 저장합니다.
+
+5. 2의 배열처럼 구조를 만든 것은 find 할 떄 도움을 받기 위해서입니다.
+=> await this.userRepo.findOne({where : {id : 1}, relations : ['playResults']})
+=> 해당 명령은 USER와 관련된 모든 POST를 가져오는 명령어 입니다.
+
+
+6. @ManyToOne(), @OneToMany()
+=> 첫 번쨰 인자는 함수로 상대방 엔티티를 가르킵니다.
+=> 두 번쨰 인자는 상대방 엔티티에서 현재 엔티티를 가리키는 속성입니다.
+
+
+7. Controller에서 FileInterceptor, UploadedFile로 form-data로 file 데이터를 받았습니다.
+=> 그리고 나머지 data를 Body에 추가했습니다. usePipe(new Validation())을 통해 그대로 파이프 처리를
+ 받을 수 있습니다.
+
+
+8. repo를 만들어서 create 할 떄 many entity에 fk를 넣습니다.
+=> 그리고 user 라는 관계를 맺어서 해당 key도 넣을 수 있는데 굳이 넣을 필요 없습니다. fk로 충분합니다.
+
+

@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import { PlayResultEntity } from 'src/play-result/play-result.entity';
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class UserEntity {
@@ -14,4 +15,7 @@ export class UserEntity {
 
     @Column()
     admin : string;
+
+    @OneToMany(()=>PlayResultEntity, (playResult)=> playResult.user)
+    play_results : PlayResultEntity[];
 }

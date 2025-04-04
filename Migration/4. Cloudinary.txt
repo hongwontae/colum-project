@@ -11,6 +11,8 @@
 }],
 
 => exports : ['CLOUDINARY']를 통해 직접 만들 설정 Service를 내보내어 다른 Service에서 사용가능하게 합니다.
+=> v2.config()가 라이브러리의 전역 설정으로 바꿉니다. 즉, Cloudinary Service에서는 cloudinary.uploader는
+ 이미 설정을 받은 상태입니다.
 
 
 2. CloudinaryService에서 upload method와 delete method를 생성합니다.
@@ -36,5 +38,38 @@
 2-4. const upload = cloudinary.uploader.upload_stream({folder : '..'}, ()=>{})
 => Cloudinary에 사진을 upload하는 쓰기 스트림을 생성합니다.
 => 스트림이 pipe()로 흘러들어왔을 떄 해야되는 처리를 정의합니다.
+
+
+3. Cloudinary에서 사진을 저장했을 떄의 반환값, Post Entity에 저장해야 되는 값
+=> {
+    "asset_id": "abc123",
+  "public_id": "uploads/sample_image",
+  "version": 123456,
+  "url": "http://res.cloudinary.com/demo/image/upload/v123456/uploads/sample_image.jpg",
+  "secure_url": "https://res.cloudinary.com/demo/image/upload/v123456/uploads/sample_image.jpg",
+  ...
+}
+=> secure_url : 이미지를 안전하게 접근할 수 있는 HTTPS 주소입니다.
+=> public_id : 클라우디나리 내부에서 파일을 식별하는 ID 입니다. (삭제나 업데이트시에 꼭 필요합니다.)
+=> original_filename : 업로드한 파일 이름입니다.
+
+
+4. Controller 작업
+4-1. @UseInterceptors(FileInterceptor('file'))
+=> file이라는 필드명(form-data로 들어오는 파일 이름)에 해당하는 파일을 내부적으로 Multer을 사용해서
+메모리 버퍼로 저장하고 그 결과를 @UploadedFile() 데코레이터로 받을 수 있게 합니다.
+=> FileInterceptor('key')는 Multer를 자동으로 불러서 파일을 처리할 수 있는 구조로 되어 있습니다.
+
+
+4-2. @UploadedFile() : file : Express.Multer.File
+=> 4-1 작업을 받을 수 있는 속성 데코레이터로 값을 받습니다.
+
+4-3. file은 dto multer 객체이기 떄문에 dto에 자동 매핑되지 않습니다.
+=> 서비스 레이어에서 매개변수 type으로 처리하면 됩니다.
+=> ** class-validator, class-transformer는 body로 받은 데이터만 작동합니다. **
+
+4-4. 사진이 있거나 없거나 처리
+=> 컨트롤러는 그대로 놔둔채 service에서는 유니온 연산자를 통해서 null일 수 있음을 처리합니다.
+=> 또한 entity에서 image와 관련된 col을 nullable 처리합니다. @Column({nullable : true})
 
 
