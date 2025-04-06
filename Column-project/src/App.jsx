@@ -2,7 +2,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
-import HomePage, { loader as homeLoader } from "./page/homePage/HomePage";
 import ErrorPage from "./page/errorPage/ErrorPage";
 import PlayResultPage, { prLoader } from "./page/playResultPage/PlayResultPage";
 import PlayResult, {
@@ -17,7 +16,6 @@ import PlayResultFormPage, {
 import { prAction } from "./components/play-result-form/PlayResultForm";
 import LoginPage from "./page/LoginPage/LoginPage";
 import { loginAction } from "./components/login/LoginForm";
-import PageContextProvider from "./context/PageContext";
 import ModifierPage, {
   action as modiAction,
   loader as modiLoader,
@@ -29,6 +27,7 @@ import {action as rfAction} from './page/RatingFormPage/action';
 import RatingUpdatePage from "./page/RatingUpdatePage/RatingUpdatePage";
 import {action as ruAction} from './page/RatingUpdatePage/action';
 import {loader as ruLoader} from './page/RatingUpdatePage/loader'
+import HomePage from "./page/homePage/HomePage";
 
 function App() {
 
@@ -39,7 +38,7 @@ function App() {
       element: <Layout></Layout>,
       errorElement: <ErrorPage></ErrorPage>,
       children: [
-        { index: true, element: <HomePage></HomePage>, loader: homeLoader },
+        { index: true, element: <HomePage></HomePage> },
         {
           path: "/play-result",
           element: <PlayResultPage></PlayResultPage>,
@@ -95,9 +94,7 @@ function App() {
 
   return (
     <>
-      <PageContextProvider>
           <RouterProvider router={router}></RouterProvider>
-      </PageContextProvider>
     </>
   );
 }

@@ -1,15 +1,24 @@
 /* eslint-disable react/prop-types */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { tropiesImageArr } from "../../../data/tropiesImageData";
 import HomePicture from "../home-picture-component/HomePicture";
 
 function HomeTropies({ toggle }) {
+
+  useEffect(()=>{
+    tropiesImageArr.forEach((ele)=>{
+      const img = new Image();
+      img.src = ele.imagePath;
+    })
+  }, [])
+
+
   return (
     <>
       <div className="mb-14">
         {toggle && (
-          <>
+          <> 
             <div className="flex justify-center gap-5 flex-wrap">
               {tropiesImageArr.map((ele) => {
                 return (
