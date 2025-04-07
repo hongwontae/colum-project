@@ -44,9 +44,9 @@ function LoginForm() {
       <Form
         method="POST"
         onSubmit={actionHandler}
-        className="flex flex-col justify-center items-center gap-4 border-[1px] w-4/6 m-auto p-12 rounded-lg mt-6"
+        className="text-[1.5rem] flex flex-col justify-center items-center gap-4 border-[1px] w-4/6 m-auto p-12 rounded-lg mt-6"
       >
-        <h2 className="text-red-500 text-4xl mb-6 font-bold">
+        <h2 className="text-red-500 text-[3.2rem] mb-2 font-bold">
           Admin Login
         </h2>
         <div className="flex justify-center gap-10 ">
@@ -95,13 +95,13 @@ function LoginForm() {
 
 export default LoginForm;
 
-export async function loginAction({ request, params }) {
+export async function loginAction({ request }) {
   const formData = await request.formData();
 
   const email = formData.get("email");
   const password = formData.get("password");
 
-  const response = await fetch("http://localhost:8080/admin/check", {
+  const response = await fetch("http://localhost:3000/user/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -116,9 +116,8 @@ export async function loginAction({ request, params }) {
 
   const resData = await response.json();
 
-  if (resData?.status === true) {
-    return redirect("/");
-  } else {
-    return { message: "action trigger", data: resData };
-  }
+  console.log(resData);
+
+  return redirect('/')
+
 }

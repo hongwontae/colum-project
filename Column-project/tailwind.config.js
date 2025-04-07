@@ -7,7 +7,7 @@ export default {
         customFontSize : '1.1rem' 
       },
       fontFamily : {
-        roboto : ['Roboto', 'sans-serif'],
+        markazi : ['"Markazi Text"', 'sans-serif'],
       },
       screens : {
          'max-sm' : {'max' : '55rem'},

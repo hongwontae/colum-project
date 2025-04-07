@@ -4,7 +4,7 @@ function HomeShortHistory({ toggle }) {
     return (
       <>
         {toggle && (
-          <div className="w-2/3 m-auto">
+          <div className="w-2/3 m-auto text-white">
             <p>
               <p className="mb-2">
                 리버풀 FC는 영국 잉글랜드 머지사이드 주의 리버풀을 연고로 하는

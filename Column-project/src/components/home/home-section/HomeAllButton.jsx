@@ -6,7 +6,7 @@ function HomeAllButton() {
 
   return (
     <>
-      <div className="w-64 m-auto mb-10">
+      <div className="w-64 m-auto mb-10 text-[1.5rem]">
         <div className="flex justify-around">
           <HomeButton onClick={allViewHandler}>Click All View</HomeButton>
           <HomeButton onClick={allDownHandler}>Click All Down</HomeButton>

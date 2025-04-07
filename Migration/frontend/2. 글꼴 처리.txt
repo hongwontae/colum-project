@@ -1,0 +1,10 @@
+1. google font
+=> index.html을 통해 link 3개를 가져와서 붙여놓습니다.
+=> tailwind를 사용하기에 tailwind.config.js에서 fontFamily : {} 에서 가져온 폰트를 정의합니다.
+=> {
+    markazi : ['"Markazi Text"', 'sans-serif']
+} 
+=> markazi tailwind의 글꼴 key입니다.(자동완성에 보이는 글자), 
+=> '"Markazi Text"' => key를 정의했는데 태그에 적용될 글꼴입니다. index.html link 태그의 google link에서
+ family=Markazi+Text 부분을 정의합니다. (공백이 존재하면 '"mmmm mmm"' 이렇게 작은, 큰 따옴표를 활용하고 공백 유지)
+ 

@@ -11,7 +11,7 @@ function MainNavigation() {
 
   return (
     <>
-      <header className="w-3/4 m-auto p-8 flex justify-center text-customFontSize">
+      <header className="w-3/4 m-auto p-8 flex justify-center text-[2rem]">
         <nav>
           <ul className={`flex gap-7 items-center `}>
             <li className={classes.list}>

@@ -3,7 +3,7 @@ function HomeLatestNewsText({ toggle }) {
     return (
       <>
         {toggle && (
-          <div className="w-2/3 m-auto">
+          <div className="w-2/3 m-auto text-white">
               <div className="mb-2">(1주일 간격으로 최근 소식으로 업데이트 됩니다.)</div>
             <div>
               <p className="mb-1">Topic1 - 아르네 슬롯이 누구신가요?</p>
