@@ -1,15 +1,25 @@
 /* eslint-disable no-unused-vars */
-import { useContext, useEffect, useId, useRef, useState } from "react";
-import { Form, redirect, useActionData, useSubmit } from "react-router-dom";
+import { useContext, useEffect, useId, useRef } from "react";
+import {
+  Form,
+  redirect,
+  useActionData,
+  useNavigate,
+  useSubmit,
+} from "react-router-dom";
+import { PageCtx } from "../../context/PageContext";
 
 function LoginForm() {
+  const navigate = useNavigate();
+  const { userInfo, setUserInfo } = useContext(PageCtx);
   const actionData = useActionData();
 
-  const [acData, setAcData] = useState(null);
-
   useEffect(() => {
-    setAcData(actionData?.data?.message);
-  }, [actionData]);
+    if (actionData?.email && actionData?.role) {
+      setUserInfo({ role: actionData?.role, email: actionData?.email });
+      navigate("/");
+    }
+  }, [actionData, setUserInfo, navigate]);
 
   const id1 = useId();
   const id2 = useId();
@@ -32,12 +42,10 @@ function LoginForm() {
   function cancelHandler() {
     emailRef.current.value = "";
     passwordRef.current.value = "";
-    setAcData(null);
   }
 
   const buttonTailwindCss = `px-5 py-2.5 bg-gray-800 text-white font-medium rounded-md 
-  hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 transition duration-150`
-    
+  hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 transition duration-150`;
 
   return (
     <>
@@ -47,7 +55,7 @@ function LoginForm() {
         className="text-[1.5rem] flex flex-col justify-center items-center gap-4 border-[1px] w-4/6 m-auto p-12 rounded-lg mt-6"
       >
         <h2 className="text-red-500 text-[3.2rem] mb-2 font-bold">
-          Admin Login
+          Login Form
         </h2>
         <div className="flex justify-center gap-10 ">
           <label htmlFor={id1} className="text-red-300 font-bold">
@@ -74,18 +82,14 @@ function LoginForm() {
           ></input>
         </div>
         {actionData && (
-          <div className="text-red-600 font-bold text-[1.2rem] mt-4">{acData}</div>
+          <div className="text-red-600 font-bold text-[1.2rem] mt-4">{}</div>
         )}
         <div className="flex justify-end gap-4 mt-2 w-full">
+          <button onClick={cancelHandler} className={buttonTailwindCss}>
+            Reset
+          </button>
           <button type="submit" className={buttonTailwindCss}>
             Login
-          </button>
-          <button
-            onClick={cancelHandler}
-            type="button"
-            className={buttonTailwindCss}
-          >
-            Reset
           </button>
         </div>
       </Form>
@@ -111,13 +115,10 @@ export async function loginAction({ request }) {
   });
 
   if (!response.ok) {
-    throw new Error("에러 발생");
+    console.log("Error");
   }
 
   const resData = await response.json();
 
-  console.log(resData);
-
-  return redirect('/')
-
+  return resData;
 }

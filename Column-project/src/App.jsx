@@ -20,18 +20,21 @@ import ModifierPage, {
   action as modiAction,
   loader as modiLoader,
 } from "./page/modifierPage/ModifierPage";
-import PlayerRatingResult, {loader as prrLoader} from "./components/player-rating/PlayerRatingResult";
+import PlayerRatingResult, {
+  loader as prrLoader,
+} from "./components/player-rating/PlayerRatingResult";
 import RatingFormPage from "./page/RatingFormPage/RatingFormPage";
-import {loader as rfLoader} from './page/RatingFormPage/loader';
-import {action as rfAction} from './page/RatingFormPage/action';
+import { loader as rfLoader } from "./page/RatingFormPage/loader";
+import { action as rfAction } from "./page/RatingFormPage/action";
 import RatingUpdatePage from "./page/RatingUpdatePage/RatingUpdatePage";
-import {action as ruAction} from './page/RatingUpdatePage/action';
-import {loader as ruLoader} from './page/RatingUpdatePage/loader'
+import { action as ruAction } from "./page/RatingUpdatePage/action";
+import { loader as ruLoader } from "./page/RatingUpdatePage/loader";
 import HomePage from "./page/homePage/HomePage";
 
+// Context
+import PageContextProvider from "./context/PageContext";
+
 function App() {
-
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -67,21 +70,21 @@ function App() {
           loader: pRatLoader,
         },
         {
-          path : '/player-rating/result/:id',
-          element : <PlayerRatingResult></PlayerRatingResult>,
-          loader : prrLoader
+          path: "/player-rating/result/:id",
+          element: <PlayerRatingResult></PlayerRatingResult>,
+          loader: prrLoader,
         },
         {
-          path : '/player-rating/form',
-          element : <RatingFormPage></RatingFormPage>,
-          loader : rfLoader,
-          action : rfAction
+          path: "/player-rating/form",
+          element: <RatingFormPage></RatingFormPage>,
+          loader: rfLoader,
+          action: rfAction,
         },
         {
-          path : '/player-rating/update/:id',
-          element : <RatingUpdatePage></RatingUpdatePage>,
-          loader : ruLoader,
-          action : ruAction
+          path: "/player-rating/update/:id",
+          element: <RatingUpdatePage></RatingUpdatePage>,
+          loader: ruLoader,
+          action: ruAction,
         },
         {
           path: "/login",
@@ -94,7 +97,9 @@ function App() {
 
   return (
     <>
-          <RouterProvider router={router}></RouterProvider>
+      <PageContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </PageContextProvider>
     </>
   );
 }

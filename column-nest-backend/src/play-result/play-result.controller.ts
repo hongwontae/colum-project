@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   Req,
   UploadedFile,
@@ -40,4 +41,11 @@ export class PlayResultController {
     console.log(postData);
     return postData;
   }
+
+  @Get('')
+  async getResult(){
+    
+  }
+
+
 }

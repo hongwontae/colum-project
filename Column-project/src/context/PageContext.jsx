@@ -3,24 +3,42 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useEffect, useState } from "react";
 
-export const PageCtx = createContext({});
+export const PageCtx = createContext({
+  userInfo: { email: "", role: "" },
+  setUserInfo: () => {},
+});
 
 export default function PageContextProvider({ children }) {
+  const [userInfo, setUserInfo] = useState({
+    role: "",
+    email : ""
+  });
 
-    const [userInfo, setUserInfo] = useState({
-      role : ''
-    })
+  useEffect(() => {
+    async function infoLife() {
+      const response = await fetch("http://localhost:3000/user/reload",{
+        method : 'POST',
+        credentials : 'include'
+      });
 
-    useEffect(()=>{
-      async function infoLife(){
-        const response = await fetch('http://localhost:3000/user/login');
+      if (!response.ok) {
+        return console.log(await response.json())
       }
-    }, [])
 
-    let ctx = {
-      userInfo,
-      setUserInfo
+      const resData = await response.json();
+
+      resData?.data
+        ? setUserInfo({ role: resData.data.role, email: resData.data.email })
+        : setUserInfo(null);
     }
+
+    infoLife();
+  }, []);
+
+  let ctx = {
+    userInfo,
+    setUserInfo,
+  };
 
   return (
     <>

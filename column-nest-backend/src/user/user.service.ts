@@ -63,8 +63,8 @@ export class UserService {
     )) as Buffer;
 
     if (existHashedPassword === newHashedPassword.toString('hex')) {
-      const jwtInfo =  this.authService.loginUser(emailMatch.userId, emailMatch.admin);
-      return [jwtInfo, emailMatch.admin]
+      const jwtInfo =  this.authService.loginUser(emailMatch.email, emailMatch.admin);
+      return [jwtInfo, emailMatch.email, emailMatch.admin]
     } else {
       throw new NotFoundException('password가 일치하지 않습니다.')
     }

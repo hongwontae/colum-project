@@ -3,10 +3,15 @@ import { PageCtx } from "../../context/PageContext";
 
 function Logout(){
 
-    const {logoutHandler : logout}= useContext(PageCtx)
+    const {setUserInfo}= useContext(PageCtx)
 
-    function logoutHandler(){
-        logout();
+    async function logoutHandler(){
+        const response  = await fetch('http://localhost:3000/user/logout', {
+            method : 'POST',
+            credentials : 'include'
+        });
+        console.log(await response.json());
+        setUserInfo(null);
     }
 
     return(

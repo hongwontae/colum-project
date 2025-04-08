@@ -7,11 +7,11 @@ import Logout from "../login/Logout";
 import { PageCtx } from "../../context/PageContext";
 
 function MainNavigation() {
-  const { isAuth } = useContext(PageCtx);
+  const { userInfo } = useContext(PageCtx);
 
   return (
     <>
-      <header className="w-3/4 m-auto p-8 flex justify-center text-[2rem]">
+      <header className="flex justify-center text-[2rem]">
         <nav>
           <ul className={`flex gap-7 items-center `}>
             <li className={classes.list}>
@@ -36,7 +36,7 @@ function MainNavigation() {
                 Play-Result
               </NavLink>
             </li>
-            {isAuth ? (
+            {userInfo?.role ? (
               <li className={classes.list}>
                 <NavLink
                   to={"/play-result-form"}
@@ -62,7 +62,7 @@ function MainNavigation() {
               </NavLink>
             </li>
 
-            {isAuth ? (
+            {userInfo?.role ? (
               <li className={classes.list}>
                 <NavLink
                   to={"/player-rating/form"}
@@ -75,7 +75,7 @@ function MainNavigation() {
                 </NavLink>
               </li>
             ) : null}
-            {isAuth ? null : (
+            {userInfo?.role ? null : (
               <li className={classes.list}>
                 <NavLink
                   to={"/login"}
@@ -84,11 +84,11 @@ function MainNavigation() {
                   }}
                   end
                 >
-                  Admin-Login
+                  Login
                 </NavLink>
               </li>
             )}
-            {isAuth ? <Logout></Logout> : null}
+            {userInfo?.role ? <Logout></Logout> : null}
           </ul>
         </nav>
       </header>

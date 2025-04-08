@@ -26,21 +26,39 @@ export class UserController {
     @Post('login')
     @UsePipes(new ValidationPipe({transform : true}))
     async loginUser(@Body() body : LoginUserDto, @Res() res : Response){
-        const [userToken, role] = await this.userService.loginUser(body.email, body.password)
+        console.log('here')
+        const [userToken, role, email] = await this.userService.loginUser(body.email, body.password)
         // 보낼 떄 jwt=jwtRealValue처럼 보냅니다.
         return res.cookie('jwt', userToken, {
             httpOnly : false,
             sameSite : 'lax',
             maxAge : 60*60*1000,
             domain : 'localhost'
-        }).json({role})
+        }).json({role, email})
     }
 
-    @Get('resource')
-    @UseGuards(AuthGuard('jwt'))
-    async testProtect(@Req() request : Request){
-        console.log('hello-world')
-        console.log(request.user)
-        return {resource : "Success Resource Access"}
+    @Post('logout')
+    async logoutUser(@Res() res : Response){
+        console.log('logout');
+        return res.clearCookie('jwt',{
+            httpOnly : false,
+            sameSite : 'lax',
+            maxAge : 60*60*1000,
+            domain : 'localhost'
+        }).json({message : '로그아웃 성공'})
     }
+
+    @Post('reload')
+    @UseGuards(AuthGuard('jwt'))
+    async reload(@Req() request : Request){
+        return request.user ? {data : request.user} : {data : false};
+    }
+
+    // @Get('resource')
+    // @UseGuards(AuthGuard('jwt'))
+    // async testProtect(@Req() request : Request){
+    //     console.log('hello-world')
+    //     console.log(request.user)
+    //     return {resource : "Success Resource Access"}
+    // }
 }
