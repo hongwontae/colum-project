@@ -7,7 +7,7 @@ export default {
         customFontSize : '1.1rem' 
       },
       fontFamily : {
-        markazi : ['"Markazi Text"', 'sans-serif'],
+        Yrsa : ['"Yrsa"', 'sans-serif'],
       },
       screens : {
          'max-sm' : {'max' : '55rem'},

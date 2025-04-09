@@ -11,7 +11,7 @@ function MainNavigation() {
 
   return (
     <>
-      <header className="flex justify-center text-[2rem]">
+      <header className="flex justify-center text-[1.5rem]">
         <nav>
           <ul className={`flex gap-7 items-center `}>
             <li className={classes.list}>
@@ -27,7 +27,7 @@ function MainNavigation() {
             </li>
             <li className={classes.list}>
               <NavLink
-                to={"/play-result?page=1"}
+                to={"/play-result"}
                 className={({ isActive }) => {
                   return isActive ? classes.active : null;
                 }}

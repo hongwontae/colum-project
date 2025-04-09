@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useRef, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
-import { PageCtx } from "../../../context/PageContext";
 import CustomModal from "../../../components/modal/CustomModal";
 import { dateTransformat } from "../../../util/date-formatted";
 import {buttonTailwindCss} from '../../../util/public-button';
@@ -12,17 +11,6 @@ function PlayResult() {
   const modalRef = useRef(null);
 
   const dateData = dateTransformat(loaderData.getOneResData.data.date);
-
-  const { isAuth, setIsAuth } = useContext(PageCtx);
-
-  useEffect(() => {
-    if (loaderData.au.jStatus === false) {
-      setIsAuth(false);
-    }
-    if (loaderData.au.jStatus === true) {
-      setIsAuth(true);
-    }
-  }, [loaderData?.au?.jStatus, setIsAuth]);
 
   function modifierHandler() {
     navigate(`/modifier/${loaderData.getOneResData.data.playId}`);
@@ -66,7 +54,7 @@ function PlayResult() {
                   {loaderData.getOneResData.data.opponentScore}
                 </div>
               </div>
-              {isAuth ? (
+            
                 <div className="flex justify-center gap-4 mt-4 w-full">
                   <button
                     type="button"
@@ -83,7 +71,6 @@ function PlayResult() {
                     Delete
                   </button>
                 </div>
-              ) : null}
             </div>
           </div>
           <div className="flex justify-center w-11/12">
@@ -102,13 +89,7 @@ export default PlayResult;
 export async function resultOneLoader({ request, params }) {
   const id = params.id;
 
-  const [getOneResponse, authData] = await Promise.all([
-    fetch(`http://localhost:8080/play-result/one?id=${id}`),
-    fetch("http://localhost:8080/admin/credential", {
-      method: "POST",
-      credentials: "include",
-    }),
-  ]);
+  
 
   if (!getOneResponse.ok || !authData.ok) {
     throw new Response(JSON.stringify({ message: "play-result http fail" }), {

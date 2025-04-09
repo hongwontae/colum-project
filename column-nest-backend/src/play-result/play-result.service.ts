@@ -33,8 +33,28 @@ export class PlayResultService {
         op_score : body.op_score,
         play_description : body.play_description,
         userId : userId,
-        
     })
     return await this.repo.save(postData);
   }
+
+  async allgetResult(page : number){
+    console.log(page);
+    const currentPage = page;
+    const limit = 10;
+
+    const [data, total] = await this.repo.findAndCount({
+      skip : (currentPage-1) * limit,
+      take : limit,
+      order : {play_result_id : 'DESC'}
+    })
+
+    return {
+      data,
+      total,
+      currentPage,
+      lastPage : Math.ceil(total/limit)
+    }
+
+  }
+
 }

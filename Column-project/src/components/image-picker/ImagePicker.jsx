@@ -41,13 +41,13 @@ function ImagePicker({
   return (
     <>
       <div className={classes.picker}>
-        <label className="text-red-400 font-bold">Image Picker</label>
+        <label className="text-red-400 font-bold text-[1.4rem]">Image Picker</label>
         <div className={classes.control}>
           <div className={classes.preview}>
             {!previewImage && (
               <>
                 <div className="flex flex-col gap-4 justify-center items-center">
-                  <div>No Image picked yet</div>
+                  <div className="text-[1.4rem]">No Image picked yet</div>
                   <div>{notification || null}</div>
                 </div>
               </>
@@ -70,7 +70,7 @@ function ImagePicker({
               imageGetHandler(e);
             }}
           ></input>
-          <div className="flex justify-center gap-4 mt-2">
+          <div className="flex justify-center gap-4 mt-2 text-[1.2rem]">
             <button
               onClick={imageHandler}
               className={classes.button}

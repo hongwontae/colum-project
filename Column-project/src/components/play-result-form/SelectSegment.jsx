@@ -10,13 +10,13 @@ const SelectSegment = function SelectSegment({
       <div className="flex flex-col gap-2 w-1/2">
         <label
           htmlFor="match_team"
-          className="text-center text-red-400 font-bold"
+          className="text-center text-red-400 font-bold text-[1.4rem]"
         >
           Match Team
         </label>
         <select
           value={selectedData}
-          className='text-black p-1 rounded-lg text-center'
+          className='text-black p-1 rounded-lg text-center text-[1.3rem]'
           id="match_team"
           onChange={(e) => {
             return setSelectedData(e.target.value);

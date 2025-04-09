@@ -3,7 +3,9 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   Req,
+  UnauthorizedException,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -37,14 +39,25 @@ export class PlayResultController {
     @Body() body: CreatePlayResultDto,
     @Req() request: Request,
   ) {
+    console.log(request.user?.userId)
     const postData = await this.playResultService.createPlayResult(file, body, Number(request.user?.userId));
-    console.log(postData);
     return postData;
   }
 
-  @Get('')
-  async getResult(){
-    
+  @Get('total/pr')
+  async allGetResult(@Query('current') page : string){  
+    console.log('???')
+      return this.playResultService.allgetResult(Number(page));
+  }
+
+  @Post('auth/pr')
+  @UseGuards(AuthGuard('jwt'))
+  async authPlayResult(@Req() req : Request){
+    if(req.user){
+      return {message : 'form에 대한 접근이 가능한 사용자입니다.'}
+    } else {
+      throw new UnauthorizedException()
+    }
   }
 
 

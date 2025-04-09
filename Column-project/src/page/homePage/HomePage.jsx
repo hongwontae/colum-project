@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <>
       <div className="flex justify-center gap-5">
-        <h1 className="text-7xl font-bold text-red-500 m-0">
+        <h1 className="text-[4rem] font-bold text-red-500 m-0">
           LiverPool Column
         </h1>
         <img

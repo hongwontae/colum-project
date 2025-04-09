@@ -1,12 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import {memo} from 'react';
 import PlayResultSingle from "../play-result-single/PlayResultSingle";
 
  function PlayResultContainer({ allData }) {
-
-  console.log('play-result-container')
-
   return (
     <>
       <section>
@@ -14,7 +10,7 @@ import PlayResultSingle from "../play-result-single/PlayResultSingle";
           {allData.map((ele) => {
             return (
               <>
-                <PlayResultSingle key={ele.id} {...ele}></PlayResultSingle>
+                <PlayResultSingle key={ele.play_result_id} {...ele}></PlayResultSingle>
               </>
             );
           })}

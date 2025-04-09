@@ -6,8 +6,8 @@ export class AuthService {
 
     constructor(private jwtService : JwtService){}
 
-    loginUser( email : string, admin : string){
-        return this.jwtService.sign({email, admin})        
+    loginUser( email : string, admin : string, userId : number){
+        return this.jwtService.sign({email, admin, userId})        
     }
 
 }

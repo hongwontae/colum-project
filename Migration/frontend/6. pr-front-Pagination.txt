@@ -1,0 +1,6 @@
+1. 데이터 추출
+=> uesLoaderData()를 통해 데이터를 가져옴
+=> useEffect()은 컴포넌트가 마운트되고 나서 가져오기에 사용자 경험이 루즈해질 수 있음
+
+
+2. 백엔드에서 정보를 가지고 와서 자식 컴포넌트에게 정보를 전달한다. (show component, pagination component)

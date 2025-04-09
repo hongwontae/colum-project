@@ -2,7 +2,7 @@
 function HomeButton({ children, ...props }) {
   return (
     <div>
-      <button {...props} className="text-red-300 mb-3 text-[1.5rem]">
+      <button {...props} className="text-red-300 mb-2 text-[1.2rem]">
         {children}
       </button>
     </div>
