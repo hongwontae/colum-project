@@ -7,7 +7,7 @@ export default {
         customFontSize : '1.1rem' 
       },
       fontFamily : {
-        Yrsa : ['"Yrsa"', 'sans-serif'],
+        Yrsa : ['"Yrsa"', '"Noto Sans KR"', 'sans-serif'],
       },
       screens : {
          'max-sm' : {'max' : '55rem'},

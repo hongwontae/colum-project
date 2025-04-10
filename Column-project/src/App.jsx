@@ -3,10 +3,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import ErrorPage from "./page/errorPage/ErrorPage";
-import PlayResultPage, { prLoader } from "./page/playResultPage/PlayResultPage";
-import PlayResult, {
+
+// play-result public and private (public 2개 먼저)
+import PublicPlayResultPage, { prLoader } from "./page/public-play-result-page/PublicPlayResultPage";
+import PrivatePlayResultPage from "./page/private-play-result-page/PrivatePlayReslutPage";
+import PublicPlayResult, {
   resultOneLoader,
-} from "./components/play-result/play-result-segment/PlayResult";
+} from "./page/public-play-result-one/PublicPlayResult";
+
+
+
 import PlayerRatingPage, {
   pRatLoader,
 } from "./page/player-rating-page/PlayerRatingPage";
@@ -43,15 +49,21 @@ function App() {
       children: [
         { index: true, element: <HomePage></HomePage> },
         {
-          path: "/play-result",
-          element: <PlayResultPage></PlayResultPage>,
+          path: "/public/play-result",
+          element: <PublicPlayResultPage></PublicPlayResultPage>,
           loader: prLoader,
         },
         {
-          path: "/play-result/:id",
-          element: <PlayResult></PlayResult>,
+          path : '/private/play-result',
+          element : <PrivatePlayResultPage></PrivatePlayResultPage>
+        },
+        {
+          path: "/public/play-result/:id",
+          element: <PublicPlayResult></PublicPlayResult>,
           loader: resultOneLoader,
         },
+
+
         {
           path: "/play-result-form",
           element: <PlayResultFormPage></PlayResultFormPage>,

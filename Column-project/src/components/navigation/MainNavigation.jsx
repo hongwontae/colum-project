@@ -27,7 +27,7 @@ function MainNavigation() {
             </li>
             <li className={classes.list}>
               <NavLink
-                to={"/play-result"}
+                to={"/public/play-result"}
                 className={({ isActive }) => {
                   return isActive ? classes.active : null;
                 }}

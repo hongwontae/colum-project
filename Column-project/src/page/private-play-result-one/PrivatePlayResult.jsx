@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { useContext, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useLoaderData, useNavigate } from "react-router";
-import CustomModal from "../../../components/modal/CustomModal";
-import { dateTransformat } from "../../../util/date-formatted";
-import {buttonTailwindCss} from '../../../util/public-button';
+import CustomModal from "../../components/modal/CustomModal";
+import { dateTransformat } from "../../util/date-formatted";
+import {buttonTailwindCss} from '../../util/public-button';
 
 function PlayResult() {
   const loaderData = useLoaderData();
@@ -87,22 +87,5 @@ function PlayResult() {
 export default PlayResult;
 
 export async function resultOneLoader({ request, params }) {
-  const id = params.id;
-
-  
-
-  if (!getOneResponse.ok || !authData.ok) {
-    throw new Response(JSON.stringify({ message: "play-result http fail" }), {
-      status: 404,
-      statusText: "filed",
-    });
-  }
-
-  const getOneResData = await getOneResponse.json();
-  const au = await authData.json();
-
-  return {
-    getOneResData,
-    au,
-  };
+  return null;
 }

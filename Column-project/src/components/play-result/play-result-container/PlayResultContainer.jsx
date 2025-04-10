@@ -6,7 +6,7 @@ import PlayResultSingle from "../play-result-single/PlayResultSingle";
   return (
     <>
       <section>
-        <ul className="flex flex-col items-center gap-6 mb-6 ml-8 mr-8">
+        <ul className="flex flex-row items-center gap-6 mb-6 ml-8 mr-8">
           {allData.map((ele) => {
             return (
               <>

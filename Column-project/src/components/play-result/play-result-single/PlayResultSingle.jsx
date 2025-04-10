@@ -9,9 +9,9 @@ function PlayResultSingle(props) {
   const newFormattedDate = dateTransformat(props.date);
   return (
     <>
-      <div className="w-9/12 border-[1px] rounded-lg h-[10rem] max-sm:w-11/12">
+      <div className="w-1/3 border-[1px] rounded-lg h-[10rem] max-sm:w-11/12">
         <Link
-          to={`/play-result/${props.play_result_id}`}
+          to={`${props.play_result_id}`}
           className="flex flex-col items-center w-full h-full"
         >
           <li className="flex justify-center items-center w-full h-full">

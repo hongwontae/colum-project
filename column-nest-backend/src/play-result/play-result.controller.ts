@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Query,
   Req,
@@ -49,6 +50,15 @@ export class PlayResultController {
     console.log('???')
       return this.playResultService.allgetResult(Number(page));
   }
+
+  @Get('one/pr/:id')
+  async oneGetResult(@Param() ID : {id : string}){
+    console.log('access-oneGetResult Controller');
+    const id = ID.id;
+    console.log(id);
+    return this.playResultService.oneGetResult(Number(id));
+  }
+
 
   @Post('auth/pr')
   @UseGuards(AuthGuard('jwt'))

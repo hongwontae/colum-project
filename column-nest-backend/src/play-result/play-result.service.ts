@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlayResultEntity } from './play-result.entity';
 import { Repository } from 'typeorm';
@@ -54,6 +54,17 @@ export class PlayResultService {
       currentPage,
       lastPage : Math.ceil(total/limit)
     }
+
+  }
+
+  async oneGetResult(id : number){
+    const matchData = await this.repo.findOne({where : {play_result_id : id}});
+
+    if(!matchData){
+      throw new NotFoundException();
+    }
+    
+    return matchData;
 
   }
 
