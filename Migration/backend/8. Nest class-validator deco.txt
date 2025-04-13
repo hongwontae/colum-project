@@ -1,0 +1,14 @@
+1. @MinLength(n, {message : 'custom'})
+=> 최소 n개를 충족해야 합니다. 그렇지 않으면 {message : 'custom'}을 전달합니다.
+
+2. @Min(n, {message : 'custom'})
+=> 1과 동일
+
+3. @Length(min, max, {message : 'custom'})
+=> 최소 ~ 최대 글자 수를 제한
+
+4. @isNotEmpty()
+=> 빈 문자열 x
+
+5. @Matches(regex)
+=> 정규식으로 검사

@@ -21,7 +21,6 @@ import PlayResultFormPage, {
 } from "./page/play-result-form/PlayResultFormPage";
 import { prAction } from "./components/play-result-form/PlayResultForm";
 import LoginPage from "./page/LoginPage/LoginPage";
-import { loginAction } from "./components/login/LoginForm";
 import ModifierPage, {
   action as modiAction,
   loader as modiLoader,
@@ -101,7 +100,6 @@ function App() {
         {
           path: "/login",
           element: <LoginPage></LoginPage>,
-          action: loginAction,
         },
       ],
     },

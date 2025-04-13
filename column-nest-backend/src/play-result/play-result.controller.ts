@@ -40,14 +40,12 @@ export class PlayResultController {
     @Body() body: CreatePlayResultDto,
     @Req() request: Request,
   ) {
-    console.log(request.user?.userId)
     const postData = await this.playResultService.createPlayResult(file, body, Number(request.user?.userId));
     return postData;
   }
 
   @Get('total/pr')
   async allGetResult(@Query('current') page : string){  
-    console.log('???')
       return this.playResultService.allgetResult(Number(page));
   }
 

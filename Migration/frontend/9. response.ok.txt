@@ -1,0 +1,2 @@
+1. fetch의 응답값으로 !response.ok가 true 조건
+=> 서버에서 어떤 에러가 발생하든 !response.ok가 받습니다.

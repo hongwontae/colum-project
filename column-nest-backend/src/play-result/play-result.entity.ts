@@ -1,5 +1,6 @@
 import { UserEntity } from "src/user/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ImageEntity } from "../cloudinary/image-entity";
 
 
 @Entity()
@@ -7,15 +8,6 @@ export class PlayResultEntity {
 
     @PrimaryGeneratedColumn()
     play_result_id : number;
-
-    @Column()
-    image_secure_url : string;
-
-    @Column()
-    image_public_id : string;
-
-    @Column()
-    image_filename : string;
 
     @Column()
     title : string
@@ -41,4 +33,7 @@ export class PlayResultEntity {
 
     @Column()
     userId : number
+
+    @OneToMany(()=>ImageEntity, (image)=>image.play_result)
+    images : ImageEntity[];
 }

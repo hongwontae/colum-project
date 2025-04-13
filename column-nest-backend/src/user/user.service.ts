@@ -70,6 +70,5 @@ export class UserService {
     }
   }
 
-  async logoutUser(){}
 
 }

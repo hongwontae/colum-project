@@ -25,4 +25,16 @@ export class CloudinaryService {
     async deleteImage(publicId: string): Promise<{ result: string }> {
         return cloudinary.uploader.destroy(publicId);
       }
+    
+      async uploadImages(files : Express.Multer.File[]) : Promise<UploadApiResponse[]>{
+        const uploadPromises = files.map((file)=>{
+            return this.uploadImage(file);
+        })
+        return Promise.all(uploadPromises)
+      }
+
+      async imageDataSave(cloudinaryResult, postId : number){
+
+      }
+
 }

@@ -13,6 +13,10 @@ export default {
          'max-sm' : {'max' : '55rem'},
          'max-lg' : {'max' : '45rem'},
          'max-mx' : {'max' : '1100px'}
+      },
+      gridTemplateColumns : {
+        'custom-3' : '3fr 1fr 1fr 1fr 1fr 1fr',
+        'custom-4' : '3fr 1fr 1fr 1fr'
       }
     },
   },

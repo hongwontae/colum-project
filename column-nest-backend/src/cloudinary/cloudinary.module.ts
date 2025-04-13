@@ -3,8 +3,11 @@ import { CloudinaryService } from './cloudinary.service';
 import {v2} from 'cloudinary';
 import {ConfigService} from '@nestjs/config';
 import { CloudinaryController } from './cloudinary.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ImageEntity } from './image-entity';
 
 @Module({
+  imports : [TypeOrmModule.forFeature([ImageEntity])],
   providers: [{
     provide : 'CLOUDINARY',
     inject: [ConfigService],
@@ -16,7 +19,7 @@ import { CloudinaryController } from './cloudinary.controller';
       });
     }
   },
-  CloudinaryService
+  CloudinaryService,
 ],
 exports : ['CLOUDINARY', CloudinaryService],
 controllers: [CloudinaryController]

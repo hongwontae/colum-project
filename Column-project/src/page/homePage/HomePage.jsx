@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 import HomeAllButton from "../../components/home/home-section/HomeAllButton";
 import HomeSubButton from "../../components/home/home-section/HomeSubButton";
-import LiverPoolIcon from "../../assets/images/liverpool-homepage-pirctures/LiverPool-Icon.png";
 function HomePage() {
 
   return (
@@ -12,8 +11,8 @@ function HomePage() {
           LiverPool Column
         </h1>
         <img
-          className="w-[80px] h-[80px] object-cover"
-          src={LiverPoolIcon}
+          className="w-[100px] h-[100px] object-cover"
+          src={'https://res.cloudinary.com/doxscmwgl/image/upload/w_150,h_150,c_fill,f_auto,q_auto/LiverPool-Icon_uhivxt.png'}
         ></img>
       </div>
       <div className="mt-5">

@@ -1,0 +1,38 @@
+1. Node.js에서 express-validator를 통해 body data를 검증하여 검증이 실패했을 떄
+ 컨트롤러에 가지 못하고 error data를 반환
+
+
+2. NestJS에서는 dto, pipe를 통해 해결할 수 있습니다.
+=> @UsePipes(new ValidationPipe({
+    transform : true, // 들어온 데이터를 dto 객체로 변환
+    whitelist : true, // dto에 정의되지 않은 데이터를 제거
+    forbidNonWhitelisted : true, // DTO에 없는 속성이 들어오면 에러 발생,
+    exceptionFactory : (errors : ValidatorError[])=>{ // 커스텀 에러 포맷을 반환합니다.
+
+    const formattedErrors = errors.map(error => ({
+    field: error.property,
+    messages: Object.values(error.constraints || {}),
+  }));
+
+  return new BadRequestException({
+    statusCode: 400,
+    message: '입력값이 유효하지 않습니다.',
+    errors: formattedErrors,
+  });
+}
+}))
+
+
+3. dto를 생성할 떄 검증을 위해서 class-validator를 통해 @IsString(), @IsEmail() 속성 데코레이터를 추가합니다.
+=> 요청 데이터가 들어올 떄 pipe를 통해서 dto 객체로 변환되고
+=> 변환된 이 후 검증 데코레이터가 dto 객체를 검사합니다.
+=> 검사 결과 error가 발생하면 에러를 던져 프론트에게 간단한 에러 내용을 전달합니다.
+
+3-1. exceptionFactory는 인자로 검증 실패 결과를 받고 이를 커스텀마이징하여 내보낼 수 있게 해주는 메서드입니다.
+=> error.property : 에러 필드
+=> error.constraints => {isString : 'error detail content'}
+
+
+4. return new BadRequestException({})
+=> throw가 아니라 반환만 하는 이유는 에러를 던지는 것은 NestJS가 하기 떄문입니다.
+=> 제어의 역전 느낌..

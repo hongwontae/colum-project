@@ -14,3 +14,19 @@
         // 그러나 실제 렌더링이 될 떄는 캐시된 데이터를 사용함으로 빠르게 가져올 수 있습니다.
     })
 }, [])
+
+
+3. Cloudinary URL 최적화
+=> https://res.cloudinary.com/{cloud_name}/image/upload/{version}/{public_id}.{format};
+=> https://res.cloudinary.com/doxscmwgl/image/upload/v1744525362/LiverPool-Icon_uhivxt.png
+=> version은 v1744525362, public_id는 LiverPool-Icon_uhivxt, format은 png입니다.
+
+3-1. upload/ 뒤에 transformation 파라미터를 추가하여 최적화된 이미지를 가져올 수 있습니다.
+=> upload/w_300,h_200,c_fill,f_auto,q_auto
+=> w,h는 넓이와 높이에 맞춰서 사진을 가져온다.
+=> c_fill은 비율을 유지하며 자르기 (object-cover)
+=> f_auto는 브라우저에 맞게 WebP 등 자동 포맷
+=> q_auto는 자동 품질 최적화 (용량을 내립니다.)
+
+3-2. 이미지를 가져올 떄 css에서 설정한 size와 동일하거나 작다면 이미지가 흐릿하게 보입니다.
+=> css 설정한 이미지 크기나 높이보다 더 크게 가져와야 선명합니다.
