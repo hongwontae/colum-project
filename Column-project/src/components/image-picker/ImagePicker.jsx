@@ -36,12 +36,11 @@ function ImagePicker({
     setPickImage(e.target.files[0]);
   }
 
-  //notification
 
   return (
     <>
       <div className={classes.picker}>
-        <label className="text-red-400 font-bold text-[1.4rem]">Image Picker</label>
+        <label className="text-red-400 font-bold text-[1.4rem]">Image Thumbnail</label>
         <div className={classes.control}>
           <div className={classes.preview}>
             {!previewImage && (

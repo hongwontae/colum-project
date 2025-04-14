@@ -36,6 +36,8 @@ import { action as ruAction } from "./page/RatingUpdatePage/action";
 import { loader as ruLoader } from "./page/RatingUpdatePage/loader";
 import HomePage from "./page/homePage/HomePage";
 
+import TestPage from './page/test-page/TestPage';
+
 // Context
 import PageContextProvider from "./context/PageContext";
 
@@ -46,7 +48,8 @@ function App() {
       element: <Layout></Layout>,
       errorElement: <ErrorPage></ErrorPage>,
       children: [
-        { index: true, element: <HomePage></HomePage> },
+        { index: true, element: <HomePage></HomePage>},
+        {path : '/test', element : <TestPage></TestPage>},
         {
           path: "/public/play-result",
           element: <PublicPlayResultPage></PublicPlayResultPage>,

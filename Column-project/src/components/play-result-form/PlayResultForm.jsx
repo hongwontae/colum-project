@@ -4,13 +4,11 @@ import ImagePicker from "../image-picker/ImagePicker";
 import { useEffect, useRef, useState } from "react";
 import SelectSegment from "./SelectSegment";
 import PlayResultButtons from "./PlayResultButtons";
-import PlayResultFormTextarea from './PlayResultFormTextarea';
 
 function PlayResultFormPage() {
   const [previewImage, setPreviewImage] = useState(null);
   const [pickImage, setPickImage] = useState(null);
   const [selectedData, setSelectedData] = useState('맨체스터 시티');
-  const [text, setText] = useState("");
 
   const submit = useSubmit();
 
@@ -23,7 +21,6 @@ function PlayResultFormPage() {
   const matchDayRef = useRef(null);
   const myTeamScoreRef = useRef(null);
   const opTeamRef = useRef(null);
-  const quillRef = useRef();
   
 
 
@@ -116,14 +113,6 @@ function PlayResultFormPage() {
           </div>
           <div className="flex flex-col gap-2 w-full items-center">
             <label htmlFor="description" className="text-red-400 font-bold text-[1.4rem]">Description</label>
-            <PlayResultFormTextarea quillRef={quillRef} setText={setText} text={text}></PlayResultFormTextarea>
-            {/* <textarea
-              type="text"
-              ref={descriptionRef}
-              id="description"
-              name="play_description"
-              className="w-11/12 h-[25rem] text-black text-center rounded-lg p-2 bg-slate-400 text-[1.4rem]"
-            ></textarea> */}
           </div>
           <div className="flex justify-center">
             <ImagePicker

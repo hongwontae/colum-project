@@ -1,0 +1,62 @@
+1. quill
+=> 리치 텍스트 에디터입니다.
+=> npm install quill react-quill 을 설치해야 합니다.
+
+2. quill을 설정하고 이미지를 올리면 Base64로 미리보기가 가능합니다.
+=> 서버와 통신 없이 바로 볼 수 있습니다.
+
+3. 서버에 Image를 보내기 전에 클라이언트 임시 저장소에 저장합니다.
+
+4. 모든 글을 작성하고 저장 버튼을 누르면 클라이언트에서 서버로 파일을 전송합니다.
+=> File 객체를 보내기 때문에 서버에서 처리합니다.
+
+
+5. Code
+5-1. <ReactQuill/>
+=> value : 현재 에디터의 내용입니다.
+=> onChange : 에디터의 내용이 바뀔 떄마다 실행되는 함수입니다.
+=> modules : 에디터의 기능들을 정의합니다.
+=> theme : Quill 테마를 의미합니다.
+=> formats : 어떤 스타일/포맷을 허용할지 정의함
+=> placeholder
+=> ref : 내부 Quill 인스턴스에 접근하기 위해 사용됩니다.
+
+5-2. quill instance
+=> const editor = quillRef.current.getEditor()로 접근해야 진정한 quill 인스턴스에 접근할 수 있습니다.
+
+5-3. modules={{
+    toolbar : { // toolbar에 어떤 버튼이 있는지
+        container : [
+            ['bold', 'italic'], // B,I 버튼
+            ['link', 'image'], // 링크, 이미지
+            [{list : 'ordered'}] // 번호 리스트
+        ], // 툴바에 보일 버튼을 정의합니다.
+        handlers : {
+            image : customHandler // 특정 버튼을 클릭 시 어떤 로직을 실행할지
+        },
+    },
+    clipboard : {}, // 단축키 설정
+    keyboard : {}, //붙여넣기 시 행동 설정
+}}
+
+5-4. formats
+=> 보안과 제어를 위해 명시된 포맷만 허용합니다.
+=> toolbar에 'image' 버튼이 존재해도 formats에 존재하지 않으면 이미지 삽입은 작동하지 않습니다.
+=> whitelist
+=> formats : {['bold', 'italic', 'link',]} => image 버튼은 존재하나 클릭 했을 떄 No 동작
+
+
+6. quill instance methods
+6-1. const range = editor.getSelection(true) : 커서 위치를 가져오는 함수입니다.
+=> return 되는 값은 {index : 42, length : 0} => 커서가 42번쨰 글자 위치에 있고 아무 것도 선택 안 됌
+
+6-2. editor.insertEmbed(range.index, 'image', reader.result);
+=> 지정 위치에 이미지를 삽입하는 함수입니다.
+=> 첫 번쨰 인자는 삽입할 위치, 두 번쨰 인자는 삽입할 embed 타입(link일 수 있음), value(이미지 주소, baseURL64)
+
+6-3. editor.setSelection(index + 1)
+=> 이미지를 삽입한 후 커서를 그 이미지 뒤로 옮겨줍니다.
+=> UX적으로 중요한 작업입니다.
+=> 커서는 사용자가 에디터 안에서 텍스트를 입력할 위치을 의미합니다.
+
+

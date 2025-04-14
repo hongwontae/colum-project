@@ -19,7 +19,7 @@ function HomeTropies({ toggle }) {
       <div className="mb-14">
         {toggle && (
           <> 
-            <div className="flex justify-center gap-5 flex-wrap">
+            <div className="flex justify-center gap-5 flex-wrap w-full">
               {tropiesImageArr.map((ele) => {
                 return (
                   <>
@@ -27,7 +27,7 @@ function HomeTropies({ toggle }) {
                       <HomePicture
                         src={ele.imagePath}
                         alt={ele.alt}
-                        className="w-[300px] h-[200px] object-cover shadow-lg rounded-lg"
+                        className="w-[22%] h-[200px] object-cover shadow-lg rounded-lg"
                       ></HomePicture>
                     </React.Fragment>
                   </>

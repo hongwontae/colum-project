@@ -1,0 +1,6 @@
+1. const reader = new FileReader();
+=> 브라우저 내장 API, 파일을 텍스트나 base64 등으로 읽게 해주는 객체입니다.
+=> reader.readAsText(file) => 텍스트 파일로 읽기
+=> reader.readAsArrayBuffer(file) => 바이너리 데이터로 읽기
+=> reader.readAsDataURL(file) => base64 데이터 URL로 읽기 (이미지 미리보기용)
+(이미지 파일을 base64로 변환 후 img의 src에 넣으면 미리보기 가능)

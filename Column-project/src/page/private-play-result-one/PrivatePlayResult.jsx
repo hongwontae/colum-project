@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import CustomModal from "../../components/modal/CustomModal";
 import { dateTransformat } from "../../util/date-formatted";
-import {buttonTailwindCss} from '../../util/public-button';
+import { buttonTailwindCss } from "../../util/public-button";
 
 function PlayResult() {
   const loaderData = useLoaderData();
@@ -48,29 +48,31 @@ function PlayResult() {
               <div className="text-red-500 font-bold text-2xl">Summary</div>
               <div className="flex flex-col gap-4 border-[1px] p-6 rounded-lg">
                 <div className="text-red-500 font-bold">{dateData}</div>
-                <div className="text-red-500 font-bold">리버풀 vs {loaderData.getOneResData.data.matchTeam}</div>
+                <div className="text-red-500 font-bold">
+                  리버풀 vs {loaderData.getOneResData.data.matchTeam}
+                </div>
                 <div className="text-red-500 font-bold">
                   {loaderData.getOneResData.data.myScore} :{" "}
                   {loaderData.getOneResData.data.opponentScore}
                 </div>
               </div>
-            
-                <div className="flex justify-center gap-4 mt-4 w-full">
-                  <button
-                    type="button"
-                    className={buttonTailwindCss + ' w-1/2'}
-                    onClick={modifierHandler}
-                  >
-                    Modify
-                  </button>
-                  <button
-                    type="button"
-                    className={buttonTailwindCss + ' w-1/2'}
-                    onClick={ModalOpenHandler}
-                  >
-                    Delete
-                  </button>
-                </div>
+
+              <div className="flex justify-center gap-4 mt-4 w-full">
+                <button
+                  type="button"
+                  className={buttonTailwindCss + " w-1/2"}
+                  onClick={modifierHandler}
+                >
+                  Modify
+                </button>
+                <button
+                  type="button"
+                  className={buttonTailwindCss + " w-1/2"}
+                  onClick={ModalOpenHandler}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
           <div className="flex justify-center w-11/12">
