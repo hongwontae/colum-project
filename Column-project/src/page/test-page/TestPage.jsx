@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ImageResize from "quill-image-resize-module-react";
@@ -9,71 +9,52 @@ function TestPage() {
   const [imageFiles, setImageFiles] = useState([]);
   const [editorHtml, setEditorHtml] = useState('')
 
-  console.log(imageFiles);
-  console.log(editorHtml)
+  async function toBase64(file){
+    return new Promise((resolve, reject)=>{
+      const reader = new FileReader();
 
-  useEffect(() => {
-    if (quillRef.current) {
-      const quill = quillRef.current.getEditor();
-      const toolbar = quill.getModule("toolbar");
+      reader.onload = ()=>{
+        resolve(reader.result)
+      }
 
-      toolbar.addHandler("image", () => {
-        const input = document.createElement("input");
-        input.setAttribute("type", "file");
-        input.setAttribute("accept", "image/*");
-        input.setAttribute("multiple", true);
-        input.click();
+      reader.onerror = ()=>{
+        reject();
+      }
+      reader.readAsDataURL(file)
 
-        input.onchange = () => {
-          const file = input.files[0];
-          if (file) {
-            const reader = new FileReader();
+    })
+  }
 
-            reader.onload = () => {
+  async function imageHandler(){
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.type = 'image/*';
+    input.click();
 
-              const fileId = `${file.name}_${file.size}_${file.lastModified}`;
-              file._id = fileId;
+    input.onchange = async ()=>{
+      if(input.files && input.files[0]){
+        const file = input.files[0];
+        const base64 = await toBase64(file);
 
-              const base64 = reader.result;
-              const range = quill.getSelection(true);
-              const imageTag = `<img src="${base64}" data-id="${fileId}" />`;
-              quill.clipboard.dangerouslyPasteHTML(range.index, imageTag);
-              // 각 파일마다 고유한 id를 추가함
-              setImageFiles((prev) => [...prev, file]);
-            };
-            reader.readAsDataURL(file);
+        const editor = quillRef.current.getEditor();
+        const range = editor.getSelection();
+
+        if(range){
+          editor.insertEmbed(range.index, 'image', base64);
+          editor.setSelection(range.index+1);
+        }
+
+        setImageFiles((prev)=>{
+          return {
+            ...prev,
+            file
           }
-        };
-      });
+        })
+
+      }
     }
-  }, []);
-
-  useEffect(()=>{
-    if(quillRef.current){
-      const quill = quillRef.current.getEditor();
-
-      quill.clipboard.addMatcher('img', (node, delta)=>{
-        const dataId = node.getAttributes('data-id');
-      })
-
-      quill.on('text-change', ()=>{
-        const html = quill.root.innerHTML;
-        console.log(html)
-        setEditorHtml(html);
-
-        const currentImageIds = Array.from(quill.root.querySelectorAll('img'))
-        console.log(currentImageIds[0].getAttribute('data-id'))
-
-        // currentImageIds ? setImageFiles((prev)=>{
-        //   return prev.filter(file => {
-        //     return currentImageIds.includes(file._id);
-        //   })
-        // }) : null
-
-      })
-    }
-  }, [])
-
+    
+  }
 
 
   return (
@@ -101,7 +82,6 @@ function TestPage() {
             "image",
             "code-block",
           ]}
-          theme="snow"
         />
         <button className="text-[4rem]" onClick={() => console.log(editorHtml)}>
           저장

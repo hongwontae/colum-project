@@ -1,0 +1,25 @@
+1. Blot
+=> Quill은 모든 컨텐츠를 Blot이라는 단위로 관리합니다.
+=> 컨텐츠의 단위이자 포맷이 Blot입니다.
+
+
+2. 기본적으로 image는 ImageBlot이라는 포맷으로 정의합니다.
+=> 기존의 ImageBlot을 확장해서 커스텀 이미지로 만들 수 있습니다.
+=> why? data-id 같은 속성을 인위적으로 붙여야 하는데 기본적으로는 이를 받아들이지 않습니다.
+
+3. const ImageBlot = Quill.import('formats/image');
+=> 기본 이미지 포맷을 가지고 옵니다.
+
+4. class CustomImageBlot extends ImageBlot { }
+=> ImageBlot을 상속받아서 커스텀 이미지 포맷을 생성합니다.
+
+5. 
+
+
+
+
+자 내가 설명해볼게
+1. 에디터의 변경 내역을 계속해서 추적한다. 그리고 그 변경 내역은 delta에 존재한다.
+2. 그리고 그 변경 내역을 DOM으로 표현해야 한다. 이 떄 delta는 blot으로 변환되어서 브라우저에 표현된다.
+3. delta는 blot을 나타내는 formats을 가지고 있다. formats을 통해 blot class에 접근할 수 있고 실제 DOM으로 만들어질 수 있다.
+4. 일반적으로 'image' formats은 추가적이고 인위적인 속성을 받지 않기에 내가 직접적으로 blot을 만들어서 formats으로 사용하면 된다.

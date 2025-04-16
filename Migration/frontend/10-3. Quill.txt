@@ -1,0 +1,38 @@
+1. delta
+=> 문서의 변경 내역을 표현하는 방식입니다.
+=> ops 배열로 구성된 객체입니다. op는 insert, delete, retain 중 하나입니다.
+
+ex)
+{
+    ops : [
+    { insert: 'Hello' },
+    { insert: 'World', attributes: { bold: true } },
+    { insert: '\n' }
+    ]
+}
+
+
+2. insert
+=> hello(문자열)
+=> {insert : {image : 'http://dksdl...'} } 이미지 or video
+
+3. delete
+=> {delete :5}
+=> 커서에서부터 5글자를 삭제한다라는 뜻입니다.
+
+4. retian
+=> { retain: 5, attributes: { bold: true } }
+=> 처음 5글자는 유지하면서, 그 부분에 bold 포맷을 적용하겠다는 뜻입니다.
+
+
+5. attributes
+=> 글자의 스타일이나 포맷 정보를 담는 객체입니다.
+=> { insert: 'World', attributes: { bold: true, color: '#f00' } }
+
+
+6. quill.updateContents({
+    ops : [
+        {retain : 5},
+        {insert : 'kk'}
+    ]
+}) => 5글자 뒤에 kk 추가
