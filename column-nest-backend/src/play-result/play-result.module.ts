@@ -9,6 +9,7 @@ import { AuthModule } from 'src/auth/auth.module';
 @Module({
   imports : [TypeOrmModule.forFeature([PlayResultEntity]), CloudinaryModule, AuthModule],
   providers: [PlayResultService],
-  controllers: [PlayResultController]
+  controllers: [PlayResultController],
+  exports : [PlayResultService]
 })
 export class PlayResultModule {}

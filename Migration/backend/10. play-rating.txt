@@ -1,0 +1,42 @@
+1. 하나의 유저는 여러 개의 play-rating을 소유할 수 있습니다.
+=> user 1 : play-rating n (1:n)
+
+2. TypeOrm에서 관계 설정을 하려면
+=> 1, n 모두에서 oneToMany, ManyToOne 데코레이터로 속성을 매핑합니다.
+=> user에서 
+=> @oneToMany(()=>PlayRatingEntity, ({play_rating_id})=>play_rating_id)
+  play_ratings : PlayRatingEntity[];
+
+=> play_rating에서
+=> @ManyToOne(()=>UserEntity, ({userId})=>userId, {onDelete : 'CASCADE'})
+   @JoinColumn({name : 'userId'})
+   user : UserEntity;
+
+
+3. 이 설정 사항을 play_rating module, app module에게 전달합니다.
+
+
+4. column에 무엇이 들어가냐하는가?
+=> title. date, op_team, rating_report
+
+
+5. 고려 사항
+=> player entity를 만들어야 하나?
+=> 하나의 rating에 여러 선수 rating이 들어간다.
+=> 1 게시물에 11 이상 rating은 포함되어야 한다.
+=> 그리고 선수단에 rating을 그대로 박는다?? 이건 아니다.
+=> player table과 raing table, rating_report table
+
+=> rating_report를 하나를 열면 여러 rating이 필요하다. 
+=> 그러면 rating은 player와 n:1 관계를 가지면 해결된다. 선수 하나에 여러 rating을 가질테니까
+=> rating_report 하나에 여러 rating을 갖는다.
+=> 그리고 user는 여러 rating을 갖는다.
+
+=> 그러면 rating page에서 user와 관련없이 모든 rating 관련 정보를 보여준다.
+=> raing page에서 자신이 사용한 글만 사용하도록 보여줄 수 도 있다. => userId에 일치하는 report만 취합
+=> 그리고 rating detail에 들어가면 rate_report id에 해당하는 rating을 가져온다. (1:n이기에 report_id가 존재함)
+=> 그리고 rating은 player을 가져와야 합니다. (1:n이기에 player_Id가 존재합니다.)
+=> 즉, 다 연결되어 가져올 수 있다.
+
+
+    

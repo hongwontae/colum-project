@@ -10,6 +10,8 @@ import { PlayResultModule } from './play-result/play-result.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { PlayResultEntity } from './play-result/play-result.entity';
 import { ImageEntity } from './cloudinary/image-entity';
+import { PlayRatingModule } from './play-rating/play-rating.module';
+import { PlayRatingEntity } from './play-rating/play-rating.entity';
 
 @Module({
   imports: [
@@ -23,14 +25,15 @@ import { ImageEntity } from './cloudinary/image-entity';
       password: 'YourRootPassword',
       username: 'root',
       database: 'col-liver',
-      entities : [UserEntity, PlayResultEntity, ImageEntity],
+      entities : [UserEntity, PlayResultEntity, ImageEntity, PlayRatingEntity],
       synchronize : true,
     }),
-    TypeOrmModule.forFeature([UserEntity, PlayResultEntity, ImageEntity]),
+    TypeOrmModule.forFeature([UserEntity, PlayResultEntity, ImageEntity, PlayRatingEntity]),
     UserModule,
     AuthModule,
     PlayResultModule,
     CloudinaryModule,
+    PlayRatingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
