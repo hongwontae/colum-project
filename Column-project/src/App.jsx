@@ -15,17 +15,15 @@ import PrivatePlayResultPage from "./page/play-result/private-play-result-page/P
 import PublicPlayResult, {
   resultOneLoader,
 } from "./page/play-result/public-play-result-one/PublicPlayResult";
-import PlayResultFormPage, { loader as resultFormLoader } from "./page/play-rating/rating-form-page/RatingFormPage";
+import PlayResultFormPage from "./page/play-rating/rating-form-page/RatingFormPage";
 
 
 // play-rating
-import PlayerRatingPage, { pRatLoader } from "./page/play-rating/public-play-rating-page/PlayRatingPage";
+import PlayerRatingPage from "./page/play-rating/public-play-rating-page/PlayRatingPage";
 import RatingFormPage from "./page/play-rating/rating-form-page/RatingFormPage";
 import RatingUpdatePage from "./page/play-rating/rating-update-Page/RatingUpdatePage";
 
-import PlayerRatingResult, {
-  loader as prrLoader,
-} from "./components/player-rating/PlayerRatingResult";
+import PlayerRatingResult from "./components/player-rating/PlayerRatingResult";
 
 
 import ModifierPage, {
@@ -66,7 +64,6 @@ function App() {
         {
           path: "/play-result-form",
           element: <PlayResultFormPage></PlayResultFormPage>,
-          loader: resultFormLoader,
         },
         {
           path: "/modifier/:id",
@@ -77,12 +74,10 @@ function App() {
         {
           path: "/player-rating",
           element: <PlayerRatingPage></PlayerRatingPage>,
-          loader: pRatLoader,
         },
         {
           path: "/player-rating/result/:id",
           element: <PlayerRatingResult></PlayerRatingResult>,
-          loader: prrLoader,
         },
         {
           path: "/player-rating/form",
