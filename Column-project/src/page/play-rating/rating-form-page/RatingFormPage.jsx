@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Form, useActionData, useLoaderData, useNavigate, useSubmit } from "react-router-dom";
-import SelectSegment from "../../components/play-result-form/SelectSegment";
-import { PageCtx } from "../../context/PageContext";
-import { buttonTailwindCss } from "../../util/public-button";
+import SelectSegment from "../../../components/play-result-form/SelectSegment";
+import { PageCtx } from "../../../context/PageContext";
+import { buttonTailwindCss } from "../../../util/public-button";
 
 function RatingFormPage() {
   const { authData, resData } = useLoaderData();

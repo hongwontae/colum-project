@@ -1,4 +1,4 @@
-import PlayResultForm from "../../components/play-result-form/PlayResultForm";
+import PlayResultForm from "../../../components/play-result-form/PlayResultForm";
 import { redirect, useLoaderData } from "react-router";
 
 function PlayResultFormPage() {

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { PlayRatingEntity } from "./play-rating.entity";
 
 @Entity()
 export class PlayerEntity {
@@ -17,4 +18,7 @@ export class PlayerEntity {
 
     @Column()
     start_bol : boolean;
+
+    @OneToMany(()=>PlayRatingEntity, ({rating_id})=>rating_id)
+    play_ratings : PlayRatingEntity[];
 }

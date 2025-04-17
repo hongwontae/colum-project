@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import PlayResultContainer from "../../components/play-result/play-result-container/PlayResultContainer";
+import PlayResultContainer from "../../../components/play-result/play-result-container/PlayResultContainer";
 import { useEffect } from "react";
-import Pagination from "../../components/play-result/Pagination";
+import Pagination from "../../../components/play-result/Pagination";
 import { useLoaderData } from "react-router";
 
 function PlayResultPage() {

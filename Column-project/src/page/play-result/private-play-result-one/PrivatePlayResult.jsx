@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useRef } from "react";
 import { useLoaderData, useNavigate } from "react-router";
-import CustomModal from "../../components/modal/CustomModal";
-import { dateTransformat } from "../../util/date-formatted";
-import { buttonTailwindCss } from "../../util/public-button";
+import CustomModal from "../../../components/modal/CustomModal";
+import { dateTransformat } from "../../../util/date-formatted";
+import { buttonTailwindCss } from "../../../util/public-button";
 
 function PlayResult() {
   const loaderData = useLoaderData();

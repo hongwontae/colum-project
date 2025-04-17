@@ -1,4 +1,4 @@
-import { PlayRatingEntity } from 'src/play-rating/play-rating.entity';
+import { PlayRatingReportEntity } from '../play-rating/play-rating-association-entity/play-rating-report.entity';
 import { PlayResultEntity } from 'src/play-result/play-result.entity';
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 
@@ -20,6 +20,6 @@ export class UserEntity {
     @OneToMany(()=>PlayResultEntity, (playResult)=> playResult.user)
     play_results : PlayResultEntity[];
 
-    @OneToMany(()=>PlayRatingEntity, ({play_rating_id})=>play_rating_id)
-    play_ratings : PlayRatingEntity[];
+    @OneToMany(()=>PlayRatingReportEntity, ({play_rating_report_id})=>play_rating_report_id)
+    play_ratings : PlayRatingReportEntity[];
 }

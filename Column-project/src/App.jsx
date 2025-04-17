@@ -1,40 +1,37 @@
 /* eslint-disable no-unused-vars */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// basic
 import Layout from "./components/layout/Layout";
-import ErrorPage from "./page/errorPage/ErrorPage";
+import ErrorPage from "./page/error-page/ErrorPage";
+import LoginPage from "./page/login-page/LoginPage";
+import HomePage from "./page/home-page/HomePage";
+
 
 // play-result public and private (public 2개 먼저)
-import PublicPlayResultPage, { prLoader } from "./page/public-play-result-page/PublicPlayResultPage";
-import PrivatePlayResultPage from "./page/private-play-result-page/PrivatePlayReslutPage";
+import PublicPlayResultPage, { prLoader } from "./page/play-result/public-play-result-page/PublicPlayResultPage";
+import PrivatePlayResultPage from "./page/play-result/private-play-result-page/PrivatePlayReslutPage";
+// 굳이 여기서 public vs private으로 나눌 이유가 있나? one은 detail일 뿐인데....
 import PublicPlayResult, {
   resultOneLoader,
-} from "./page/public-play-result-one/PublicPlayResult";
+} from "./page/play-result/public-play-result-one/PublicPlayResult";
+import PlayResultFormPage, { loader as resultFormLoader } from "./page/play-rating/rating-form-page/RatingFormPage";
 
 
+// play-rating
+import PlayerRatingPage, { pRatLoader } from "./page/play-rating/public-play-rating-page/PlayRatingPage";
+import RatingFormPage from "./page/play-rating/rating-form-page/RatingFormPage";
+import RatingUpdatePage from "./page/play-rating/rating-update-Page/RatingUpdatePage";
 
-import PlayerRatingPage, {
-  pRatLoader,
-} from "./page/player-rating-page/PlayerRatingPage";
-import PlayResultFormPage, {
-  loader as resultFormLoader,
-} from "./page/play-result-form/PlayResultFormPage";
-import { prAction } from "./components/play-result-form/PlayResultForm";
-import LoginPage from "./page/LoginPage/LoginPage";
-import ModifierPage, {
-  action as modiAction,
-  loader as modiLoader,
-} from "./page/modifierPage/ModifierPage";
 import PlayerRatingResult, {
   loader as prrLoader,
 } from "./components/player-rating/PlayerRatingResult";
-import RatingFormPage from "./page/RatingFormPage/RatingFormPage";
-import { loader as rfLoader } from "./page/RatingFormPage/loader";
-import { action as rfAction } from "./page/RatingFormPage/action";
-import RatingUpdatePage from "./page/RatingUpdatePage/RatingUpdatePage";
-import { action as ruAction } from "./page/RatingUpdatePage/action";
-import { loader as ruLoader } from "./page/RatingUpdatePage/loader";
-import HomePage from "./page/homePage/HomePage";
+
+
+import ModifierPage, {
+  action as modiAction,
+  loader as modiLoader,
+} from "./page/modifier-page/ModifierPage";
 
 import TestPage from './page/test-page/TestPage';
 
@@ -69,7 +66,6 @@ function App() {
         {
           path: "/play-result-form",
           element: <PlayResultFormPage></PlayResultFormPage>,
-          action: prAction,
           loader: resultFormLoader,
         },
         {
@@ -91,14 +87,10 @@ function App() {
         {
           path: "/player-rating/form",
           element: <RatingFormPage></RatingFormPage>,
-          loader: rfLoader,
-          action: rfAction,
         },
         {
           path: "/player-rating/update/:id",
           element: <RatingUpdatePage></RatingUpdatePage>,
-          loader: ruLoader,
-          action: ruAction,
         },
         {
           path: "/login",
