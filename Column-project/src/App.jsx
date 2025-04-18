@@ -15,15 +15,16 @@ import PrivatePlayResultPage from "./page/play-result/private-play-result-page/P
 import PublicPlayResult, {
   resultOneLoader,
 } from "./page/play-result/public-play-result-one/PublicPlayResult";
-import PlayResultFormPage from "./page/play-rating/rating-form-page/RatingFormPage";
+import PlayResultFomrPage from './page/play-result/play-result-form/PlayResultFormPage'
 
 
 // play-rating
 import PlayerRatingPage from "./page/play-rating/public-play-rating-page/PlayRatingPage";
-import RatingFormPage from "./page/play-rating/rating-form-page/RatingFormPage";
 import RatingUpdatePage from "./page/play-rating/rating-update-Page/RatingUpdatePage";
-
-import PlayerRatingResult from "./components/player-rating/PlayerRatingResult";
+import PlayRatingFormPage from "./page/play-rating/rating-form-page/RatingFormPage";
+import PlayerRatingResult from "./components/play-rating/PlayerRatingResult";
+// rating loader and action
+import {PlayRatingFormLoader} from './components/play-rating-from/PlayRatingForm';
 
 
 import ModifierPage, {
@@ -59,32 +60,30 @@ function App() {
           element: <PublicPlayResult></PublicPlayResult>,
           loader: resultOneLoader,
         },
-
-
         {
           path: "/play-result-form",
-          element: <PlayResultFormPage></PlayResultFormPage>,
+          element: <PlayResultFomrPage></PlayResultFomrPage>,
         },
+        // {
+        //   path: "/modifier/:id",
+        //   element: <ModifierPage></ModifierPage>,
+        //   action: modiAction,
+        //   loader: modiLoader,
+        // },
         {
-          path: "/modifier/:id",
-          element: <ModifierPage></ModifierPage>,
-          action: modiAction,
-          loader: modiLoader,
-        },
-        {
-          path: "/player-rating",
+          path: "/play-rating",
           element: <PlayerRatingPage></PlayerRatingPage>,
         },
         {
-          path: "/player-rating/result/:id",
+          path : '/play-rating/form',
+          element : <PlayRatingFormPage></PlayRatingFormPage>,
+        },
+        {
+          path: "/play-rating/result/:id",
           element: <PlayerRatingResult></PlayerRatingResult>,
         },
         {
-          path: "/player-rating/form",
-          element: <RatingFormPage></RatingFormPage>,
-        },
-        {
-          path: "/player-rating/update/:id",
+          path: "/play-rating/update/:id",
           element: <RatingUpdatePage></RatingUpdatePage>,
         },
         {

@@ -9,7 +9,7 @@ function PlayResultFormPage() {
   const [previewImage, setPreviewImage] = useState(null);
   const [pickImage, setPickImage] = useState(null);
   const [selectedData, setSelectedData] = useState('맨체스터 시티');
-
+  
   const submit = useSubmit();
 
 

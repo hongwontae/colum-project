@@ -22,8 +22,11 @@ export class PlayRatingEntity {
     @Column()
     player_id : number
 
-    @Column()
+    @Column({nullable : true})
     rating : number;
+
+    @Column()
+    start_bol : boolean
 
 
     

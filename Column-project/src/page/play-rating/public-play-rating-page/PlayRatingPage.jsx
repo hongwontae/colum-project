@@ -12,6 +12,6 @@ function PlayerRatingPage() {
 
 export default PlayerRatingPage;
 
-export async function pRatLoader({ request, params }) {
-
+export async function playRatingLoader({ request, params }) {
+  
 }

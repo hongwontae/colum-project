@@ -16,8 +16,6 @@ export class PlayerEntity {
     @Column()
     backNumber : number;
 
-    @Column()
-    start_bol : boolean;
 
     @OneToMany(()=>PlayRatingEntity, ({rating_id})=>rating_id)
     play_ratings : PlayRatingEntity[];

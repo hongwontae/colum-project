@@ -1,0 +1,6 @@
+1. Context API를 사용해서 새로고침 시 로그인 상태 유지를 함
+=> zustand을 사용해서 migration 필요
+
+2. play-rating form부터 시작
+=> css는 play-result form과 비슷하게 유지
+=> 사진은 thumnail용 하나만 필요 

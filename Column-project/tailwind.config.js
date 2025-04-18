@@ -16,7 +16,8 @@ export default {
       },
       gridTemplateColumns : {
         'custom-3' : '3fr 1fr 1fr 1fr 1fr 1fr',
-        'custom-4' : '3fr 1fr 1fr 1fr'
+        'custom-4' : '3fr 1fr 1fr 1fr',
+        'custom-5' : '1fr 1fr'
       }
     },
   },

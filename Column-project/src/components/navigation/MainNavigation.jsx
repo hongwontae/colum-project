@@ -52,7 +52,7 @@ function MainNavigation() {
 
             <li className={classes.list}>
               <NavLink
-                to={"/player-rating"}
+                to={"/play-rating"}
                 className={({ isActive }) => {
                   return isActive ? classes.active : null;
                 }}
@@ -65,7 +65,7 @@ function MainNavigation() {
             {userInfo?.role ? (
               <li className={classes.list}>
                 <NavLink
-                  to={"/player-rating/form"}
+                  to={"/play-rating/form"}
                   className={({ isActive }) => {
                     return isActive ? classes.active : null;
                   }}
