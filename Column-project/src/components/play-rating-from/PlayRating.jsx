@@ -1,15 +1,11 @@
 /* eslint-disable react/prop-types */
 function PlayRating({ player, setPlayer }) {
-  function ratingHandler(id, rating, player_name) {
+  function ratingHandler(idx, rating) {
     setPlayer((prev) => {
-      return [
-        ...prev,
-        {
-          player_id: id,
-          rating,
-          player_name: player_name,
-        },
-      ];
+      const prevState = [...prev];
+      prevState[idx-1] = {...prevState[idx-1], rating}
+      return prevState
+
     });
   }
 
@@ -31,7 +27,6 @@ function PlayRating({ player, setPlayer }) {
                         ratingHandler(
                           ele.player_id,
                           e.target.value,
-                          ele.player_name
                         )
                       }
                       type="number"
@@ -53,6 +48,9 @@ function PlayRating({ player, setPlayer }) {
                       {ele.player_name}
                     </label>
                     <input
+                    onChange={(e)=>{
+                      ratingHandler(ele.player_id, e.target.value)
+                    }}
                       type="number"
                       className="text-center text-black rounded-lg"
                     ></input>
