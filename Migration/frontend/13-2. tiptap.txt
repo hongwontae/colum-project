@@ -1,0 +1,20 @@
+1. tiptap 옵션 구현 방법
+1-1. useEditor({
+    extensions : [Starterkit, Bold, Italic, Underline]
+})
+=> editor 인스턴스 생성 훅에서 설정 객체에서 확장 목록을 정의합니다.
+=> ** extensions의 옵션 값들은 다른 패키지에서 관리되고 있어서 따로 설치해야 합니다. 
+    npm install @tiptap/extensions-underline ..**
+=> 이렇게 설정을 해도 UI에 나타나는 것이 아닙니다.
+
+
+1-2. <button onClick={()=>editor.chain().focus().toggleBold().run()}>
+=> 해당 버튼을 누르면 bold가 구현되고 다시 누르면 취소됩니다.
+=> editor에 확장 목록이 존재하기에 toggleBold, toggleItalic 같은 메서드가 생성됩니다.
+
+
+2. editor.active('bold')
+=> editor에서 구현한 확장 목록이 활성화되면 true, 그렇지 않으면 false
+
+
+3. 

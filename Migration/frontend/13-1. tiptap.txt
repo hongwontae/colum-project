@@ -1,0 +1,32 @@
+1. Text Editor Tiptap 설치 명령어
+=> npm install @tiptap/react @tiptap/starter-kit
+
+2. const editor = useEditor({...})
+=> 에디터 인스턴스를 생성하는 React hook입니다.
+=> 상태 변화에 따라 React가 렌더링을 다시 하도록 연결해주는 React Hook입니다.
+=> 인자는 객체로 받습니다.
+
+2-1. EditorOptions(옵션 객체)
+=> extensions : 사용할 확장 기능 목록 (bold, italic, list 등)
+(
+    ** 여기서 옵션을 추가하더라도 바로 UI에 구현되는 것은 아닙니다. **
+    ** button element을 생성하고 editor 인스턴스에서 메서드를 호출하여 on/off을 구현합니다.
+)
+
+=> content : 초기 콘텐츠 (<p>Hello</p> 또는 JSON)
+=> editable : 수정 가능 여부 (true면 사용자가 편집 가능)
+=> autofocus : 에디터가 mount될 때 자동 포커스
+=> onUpdate : 내용이 변경될 때 호출되는 콜백
+=> editorProps : 실제 렌더링 되는 DOM의 속성 지정
+
+2-2. editor(hook의 반환 값 메서드, 속성)
+=> getHTML() : 현재 내용을 HTML 문자열로 반환
+=> getJSON() : 현재 내용을 JSON 구조로 반환
+=> commands.setContent(...) : 콘텐츠를 동적으로 설정
+=> commands.toggleBold() : Bold 토글
+=> isEditable : 현재 편집 가능한 상태인지
+=> isActive('bold')	: 현재 커서 위치가 bold인지 확인
+=> destroy() : 에디터 인스턴스 제거
+
+3. EditorCotent
+=> 실제 사용자에게 보여지는 에디터 UI 인스턴스입니다.

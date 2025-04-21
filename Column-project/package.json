@@ -11,6 +11,12 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.45.1",
+    "@tiptap/extension-bold": "^2.11.7",
+    "@tiptap/extension-italic": "^2.11.7",
+    "@tiptap/extension-link": "^2.11.7",
+    "@tiptap/extension-underline": "^2.11.7",
+    "@tiptap/react": "^2.11.7",
+    "@tiptap/starter-kit": "^2.11.7",
     "install": "^0.13.0",
     "npm": "^10.8.1",
     "quill": "^1.3.7",
