@@ -1,8 +1,17 @@
 import { Outlet } from "react-router-dom";
 import MainNavigation from "../navigation/MainNavigation";
 import LoginInfoBox from '../login-info-box/LoginInfoBox';
+import { userStore } from "../../zustand-store/user-store";
+import { useEffect } from "react";
 
 function Layout() {
+
+  const fetchFunction = userStore((state)=>state.fetchUser)
+
+  useEffect(()=>{
+    fetchFunction()
+  }, [fetchFunction])
+
   return (
     <>
       <div className="flex flex-col bg-slate-800 min-h-screen text-center font-Yrsa">

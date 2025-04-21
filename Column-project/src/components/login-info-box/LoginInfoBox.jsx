@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import {PageCtx} from '../../context/PageContext';
+import { userStore } from "../../zustand-store/user-store";
 
 function LoginInfoBox(){
 
 
-    const {userInfo} = useContext(PageCtx)
+    const userInfo = userStore(state=>state.userState)
 
     return(
         <>

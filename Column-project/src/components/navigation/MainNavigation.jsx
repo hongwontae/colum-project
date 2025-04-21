@@ -2,12 +2,11 @@
 import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
-import { useContext } from "react";
 import Logout from "../login/Logout";
-import { PageCtx } from "../../context/PageContext";
+import {userStore} from '../../zustand-store/user-store';
 
 function MainNavigation() {
-  const { userInfo } = useContext(PageCtx);
+  const userInfo = userStore(state=>state.userState);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useStore } from "../../../zustand-store/HomePageStore";
+import { useStore } from "../../../zustand-store/home-page-store";
 import HomeButton from "../../../reusable-components/HomeButton";
 
 function HomeAllButton() {

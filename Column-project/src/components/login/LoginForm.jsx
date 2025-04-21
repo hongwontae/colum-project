@@ -3,13 +3,14 @@ import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageCtx } from "../../context/PageContext";
 import CreateUserForm from "../create-user/CreateUserForm";
+import {userStore} from '../../zustand-store/user-store'
 
 const buttonTailwindCss = `px-5 py-2.5 bg-gray-800 text-white font-medium rounded-md 
   hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 transition duration-150`;
 
 function LoginForm() {
   const navigate = useNavigate();
-  const { setUserInfo } = useContext(PageCtx);
+  const setFunction = userStore(state=>state.setUserInfo)
   const [lc, setLc] = useState("login");
   const [erorrs, setErrors] = useState([]);
 
@@ -46,7 +47,7 @@ function LoginForm() {
       })
       return setErrors(errorData)
     } else {
-      setUserInfo({ role: resData.role, email: resData.email });
+      setFunction(resData.email, resData.role);
       navigate("/");
     }
   }

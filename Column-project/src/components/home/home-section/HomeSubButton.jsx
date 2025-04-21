@@ -1,5 +1,5 @@
 import HomeButton from '../../../reusable-components/HomeButton';
-import {useStore} from '../../../zustand-store/HomePageStore';
+import {useStore} from '../../../zustand-store/home-page-store';
 import HomeLatestNewsText from '../home-segment/HomeLatestNewsText';
 import HomePictures from '../home-segment/HomePictures';
 import HomeShortHistory from '../home-segment/HomeShortHistory';

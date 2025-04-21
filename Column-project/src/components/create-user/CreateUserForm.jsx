@@ -9,7 +9,6 @@ function CreateUserForm({ setLc }) {
   const passwordRef = useRef(null);
   const [errorMessages, setErrorMessages] = useState([]);
 
-  console.log(errorMessages);
   async function createUserHandler(e) {
     e.preventDefault();
 
