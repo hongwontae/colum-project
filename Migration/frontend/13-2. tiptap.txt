@@ -17,4 +17,23 @@
 => editor에서 구현한 확장 목록이 활성화되면 true, 그렇지 않으면 false
 
 
-3. 
+3. Link 구현
+3-1. import Link from '@tiptap/extension-link' (npm으로 따로 install 해야 합니다.)
+3-2. useEditor({
+    extensions : [
+        Link.configure({
+            openOnClick : boolean, (링크가 걸린 텍스트를 클릭했을 때 새 창으로 열리게 할지 여부 (기본: true)),
+            autolink : boolean, (텍스트를 입력 중에 자동으로 링크로 인식할지 여부 (예: https://naver.com)),
+            linkOnPaste : boolean, (URL을 붙여넣을 때 자동으로 링크로 감쌀지 여부)
+            HTMLAttributes : {
+                class,
+                target,
+                rel
+            }, (렌더링 될 때 <a> 태그에 추가될 속성들 (예: class, target, rel 등))
+        })
+    ]
+})
+3-3. Link을 추가할 떄는 StarterKit.configure({})은 bold, italic이 구현되어 있습니다.
+=> 그 와중에 bold, italic를 또 추가하면 에러가 발생할 수 도 있습니다.
+ 
+

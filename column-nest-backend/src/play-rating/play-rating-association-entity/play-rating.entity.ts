@@ -28,6 +28,4 @@ export class PlayRatingEntity {
     @Column()
     start_bol : boolean
 
-
-    
 }

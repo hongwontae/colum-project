@@ -1,0 +1,15 @@
+1. 명령어
+=> 에디터의 상태를 바꾸는 액션입니다.
+=> tiptap에서는 내용 변경, 포맷 적용할 떄 명령어를 사용합니다.
+=> editor.commands() or editor.chain()를 통해 명령어를 호출합니다. (chain은 명령 연결하여 실행)
+
+2. cursor
+=> 에디터 내에서 현재 선택된 위치나 범위를 의미합니다.
+=> editor.state.selection.form, editor.state.selection.to로 접근할 수 있습니다.
+
+3. 포커스
+=> 에디터가 활성화되어 있는 상태인지를 말합니다.
+=> 대부분 명령어 실행 전에 .focus()를 줍니다.
+
+4. editor.chain().focus()
+=> 명령어 체인을 시작하고 에디터에 포커스를 맞춥니다.

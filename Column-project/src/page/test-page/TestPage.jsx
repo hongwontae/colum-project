@@ -3,12 +3,36 @@ import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Bold from "@tiptap/extension-bold";
 import Italic from "@tiptap/extension-italic";
+import Link from "@tiptap/extension-link";
+import { useRef, useState } from "react";
+import EditorModal from "./EditorModal";
 
 function TestPage() {
   const editor = useEditor({
-    extensions: [StarterKit, Underline, Bold, Italic],
+    extensions: [
+      StarterKit.configure({
+        bold: false,
+        italic: false,
+      }),
+      Underline,
+      Bold,
+      Italic,
+      Link.configure({
+        autolink: true,
+        openOnClick: true,
+        linkOnPaste: true,
+        HTMLAttributes: { class: "text-blue-500 underline" },
+      }),
+    ],
     content: "<p>Hello Tiptap!</p>",
   });
+  const [toggle, setToggle] = useState(false);
+  const titleRef = useRef();
+  const urlRef = useRef();
+
+  function linkClickHandler(){
+    setToggle(prev=>!prev)
+  }
 
   return (
     <>
@@ -44,6 +68,15 @@ function TestPage() {
           >
             Underline
           </button>
+
+          <button
+            className={`px-3 py-1 rounded ${
+              toggle ? "bg-blue-500 text-white" : "bg-gray-700"
+            }`}
+            onClick={linkClickHandler}
+          >
+            Link 추가/수정
+          </button>
         </div>
 
         <EditorContent
@@ -51,6 +84,7 @@ function TestPage() {
           className="border p-4 rounded bg-white text-black"
         />
       </div>
+      {toggle ? <EditorModal titleRef={titleRef} urlRef={urlRef}></EditorModal> : null}
     </>
   );
 }
